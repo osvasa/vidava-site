@@ -400,6 +400,17 @@
   #page-dashboard .page-inner { padding-top: 70px; }
   .dash-store-name { font-weight: 600; }
 
+  /* Mobile card list (hidden on desktop) */
+  .dash-cards-mobile { display: none; }
+  .dash-card-item { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 14px; margin-bottom: 10px; }
+  .dash-card-item-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+  .dash-card-item-store { font-size: 14px; font-weight: 700; color: #fff; }
+  .dash-card-item-date { font-size: 11px; color: rgba(255,255,255,0.3); }
+  .dash-card-item-mid { display: flex; justify-content: space-between; align-items: baseline; }
+  .dash-card-item-amount { font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace; font-size: 18px; font-weight: 700; color: rgba(255,255,255,0.85); }
+  .dash-card-item-cardname { font-size: 12px; color: #00e5cc; font-weight: 600; text-align: right; max-width: 55%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .dash-card-item-reward { font-size: 12px; color: #FFD932; font-weight: 600; margin-top: 6px; }
+
   /* LOGIN MODAL */
   .login-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 300; align-items: center; justify-content: center; }
   .login-overlay.active { display: flex; }
@@ -417,10 +428,11 @@
     .dash-summary { grid-template-columns: 1fr 1fr; }
     .dash-summary .dash-stat:nth-child(3) { grid-column: span 2; }
     .dash-summary-row2 { grid-template-columns: 1fr 1fr; }
-    .dash-table th:nth-child(4), .dash-table td:nth-child(4) { display: none; }
+    .dash-table { display: none; }
+    .dash-cards-mobile { display: block; }
     .dash-filters { flex-wrap: wrap; }
     .dash-nav-email { display: none; }
-    .dash-chart-wrap { height: 220px; }
+    .dash-chart-wrap { height: 220px; padding: 14px; border-radius: 10px; }
     .dash-title { font-size: 22px; margin-bottom: 16px; }
   }
 </style>
@@ -1056,26 +1068,49 @@ function renderDashboard(recs) {
     }
   });
 
+  // Desktop table
   var html = '<table class="dash-table"><thead><tr>' +
     '<th>Store</th><th>Amount</th><th>Card</th><th>Reward</th><th>Date</th>' +
     '</tr></thead><tbody>';
+  // Mobile card list
+  var mobileHtml = '<div class="dash-cards-mobile">';
+  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
   grouped.forEach(function(r) {
     var amt = r.purchase_amount ? '$' + parseFloat(r.purchase_amount).toFixed(2) : '—';
     var reward = r.totalReward > 0 ? '$' + r.totalReward.toFixed(2) : '—';
     var d = new Date(r.created_at);
-    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
     var date = months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
     var badge = r.count > 1 ? '<span class="dash-count-badge">' + r.count + 'x</span>' : '';
+    var cardName = r.recommended_card_name || '';
+    var shortCard = cardName.length > 20 ? cardName.substring(0, 20) + '...' : cardName;
+
+    // Desktop row
     html += '<tr>' +
       '<td><span class="dash-store-name">' + escH(r.store_name) + '</span>' + badge + '</td>' +
       '<td class="dash-amount">' + amt + '</td>' +
-      '<td><span class="dash-card-name">' + escH(r.recommended_card_name) + '</span><div class="dash-card-bank">' + escH(r.recommended_card_bank) + '</div></td>' +
+      '<td><span class="dash-card-name">' + escH(cardName) + '</span><div class="dash-card-bank">' + escH(r.recommended_card_bank) + '</div></td>' +
       '<td class="dash-reward">' + reward + '</td>' +
       '<td class="dash-date">' + date + '</td>' +
       '</tr>';
+
+    // Mobile card
+    mobileHtml += '<div class="dash-card-item">' +
+      '<div class="dash-card-item-top">' +
+        '<span class="dash-card-item-store">' + escH(r.store_name) + badge + '</span>' +
+        '<span class="dash-card-item-date">' + date + '</span>' +
+      '</div>' +
+      '<div class="dash-card-item-mid">' +
+        '<span class="dash-card-item-amount">' + amt + '</span>' +
+        '<span class="dash-card-item-cardname">' + escH(shortCard) + '</span>' +
+      '</div>' +
+      (r.totalReward > 0 ? '<div class="dash-card-item-reward">Earned ' + reward + '</div>' : '') +
+      '</div>';
   });
+
   html += '</tbody></table>';
-  content.innerHTML = html;
+  mobileHtml += '</div>';
+  content.innerHTML = html + mobileHtml;
 }
 
 function renderRewardsChart(recs) {
