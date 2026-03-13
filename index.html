@@ -164,6 +164,167 @@
   .f-links a { font-size: 13px; color: rgba(255,255,255,0.55); text-decoration: none; }
   .f-links a:hover { color: #fff; }
 
+  /* LEGAL / CONTACT PAGES */
+  .page-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: #000;
+    z-index: 200;
+    overflow-y: auto;
+  }
+  .page-overlay.active { display: block; }
+  .page-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 100px 40px 80px;
+  }
+  .page-back {
+    position: fixed;
+    top: 20px; left: 40px;
+    background: none;
+    border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.7);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 8px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    z-index: 201;
+    transition: color 0.2s, border-color 0.2s;
+    font-family: inherit;
+  }
+  .page-back:hover { color: #fff; border-color: rgba(255,255,255,0.4); }
+  .page-title {
+    font-size: 36px;
+    font-weight: 900;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+  }
+  .page-updated {
+    font-size: 13px;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 40px;
+  }
+  .page-section {
+    margin-bottom: 32px;
+  }
+  .page-section h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #00e5cc;
+    margin-bottom: 10px;
+  }
+  .page-section p, .page-section li {
+    font-size: 15px;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.8;
+  }
+  .page-section ul {
+    list-style: none;
+    padding: 0;
+  }
+  .page-section ul li {
+    padding-left: 18px;
+    position: relative;
+    margin-bottom: 6px;
+  }
+  .page-section ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #ff6eb4;
+  }
+  .page-section a {
+    color: #00e5cc;
+    text-decoration: none;
+  }
+  .page-section a:hover { text-decoration: underline; }
+  .page-divider {
+    border: none;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    margin: 32px 0;
+  }
+
+  /* CONTACT FORM */
+  .contact-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 32px;
+  }
+  .contact-email {
+    font-size: 20px;
+    font-weight: 700;
+    color: #00e5cc;
+    margin-bottom: 4px;
+  }
+  .contact-email a { color: #00e5cc; text-decoration: none; }
+  .contact-email a:hover { text-decoration: underline; }
+  .contact-sub {
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+  }
+  .form-group {
+    margin-bottom: 16px;
+  }
+  .form-label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 6px;
+  }
+  .form-input, .form-textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 15px;
+    color: #fff;
+    font-family: inherit;
+    transition: border-color 0.2s;
+  }
+  .form-input:focus, .form-textarea:focus {
+    outline: none;
+    border-color: #00e5cc;
+  }
+  .form-textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+  .form-btn {
+    background: #FFD932;
+    color: #222;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 12px 32px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.2s;
+  }
+  .form-btn:hover { background: #e6c320; }
+  .form-success {
+    display: none;
+    padding: 14px 20px;
+    background: rgba(0,229,204,0.1);
+    border: 1px solid rgba(0,229,204,0.3);
+    border-radius: 8px;
+    font-size: 14px;
+    color: #00e5cc;
+    margin-top: 16px;
+  }
+
   @media (max-width: 680px) {
     .hero h1 { font-size: 42px; }
     nav { padding: 14px 20px; }
@@ -171,6 +332,10 @@
     .steps-grid, .cards-grid { grid-template-columns: 1fr; }
     footer { flex-direction: column; gap: 18px; text-align: center; padding: 24px 20px; }
     .f-links { justify-content: center; }
+    .page-inner { padding: 80px 20px 60px; }
+    .page-title { font-size: 28px; }
+    .page-back { left: 20px; }
+    .contact-card { padding: 24px 20px; }
   }
 </style>
 </head>
@@ -316,11 +481,238 @@
     <div class="f-sub">AI-driven spending. smarter, easier.</div>
   </div>
   <div class="f-links">
-    <a href="#">Privacy Policy</a>
-    <a href="#">Contact Us</a>
+    <a href="#" onclick="showPage('privacy');return false;">Privacy Policy</a>
+    <a href="#" onclick="showPage('terms');return false;">Terms of Use</a>
+    <a href="#" onclick="showPage('contact');return false;">Contact Us</a>
   </div>
 </footer>
 
+<!-- PRIVACY POLICY -->
+<div class="page-overlay" id="page-privacy">
+  <button class="page-back" onclick="closePage()">Back</button>
+  <div class="page-inner">
+    <h2 class="page-title">Privacy Policy</h2>
+    <div class="page-updated">Last updated: March 12, 2026</div>
+
+    <div class="page-section">
+      <h3>What We Collect</h3>
+      <p>VIDAVA collects only the information needed to provide personalized card recommendations:</p>
+      <ul>
+        <li>Your email address (for account authentication)</li>
+        <li>Credit card details you provide (card name, bank, rewards type, APR, payment due date, and credit limit)</li>
+        <li>Checkout page data (store name, purchase category, and order total) — analyzed locally in your browser to generate recommendations</li>
+      </ul>
+    </div>
+
+    <hr class="page-divider"/>
+
+    <div class="page-section">
+      <h3>How We Use Your Data</h3>
+      <p>Your information is used for one purpose: to recommend the best card to use at checkout. Specifically:</p>
+      <ul>
+        <li>Card details are stored securely in the cloud so they sync across your devices</li>
+        <li>Checkout page data is sent to our AI service to determine which of your cards earns the most rewards for that purchase</li>
+        <li>We do not use your data for advertising, profiling, or any purpose beyond delivering recommendations</li>
+      </ul>
+    </div>
+
+    <hr class="page-divider"/>
+
+    <div class="page-section">
+      <h3>We Do Not Sell Your Data</h3>
+      <p>VIDAVA does not sell, rent, or share your personal information with third parties for marketing purposes. Your card details and browsing activity are never monetized.</p>
+    </div>
+
+    <hr class="page-divider"/>
+
+    <div class="page-section">
+      <h3>Data Storage and Security</h3>
+      <p>Your account and card data are stored securely via Supabase, a cloud database platform with encryption at rest and in transit. AI recommendations are processed through Anthropic's Claude API — no personal data is stored by Anthropic or used for model training.</p>
+    </div>
+
+    <hr class="page-divider"/>
+
+    <div class="page-section">
+      <h3>Your Rights</h3>
+      <p>You have full control over your data:</p>
+      <ul>
+        <li>You can view, edit, or delete any card from the extension at any time</li>
+        <li>You can delete your account entirely by contacting us at <a href="mailto:hello@vidava.ai">hello@vidava.ai</a> — we will remove all associated data from our systems</li>
+        <li>You can uninstall the extension at any time, which stops all data collection immediately</li>
+      </ul>
+    </div>
+
+    <hr class="page-divider"/>
+
+    <div class="page-section">
+      <h3>Cookies and Tracking</h3>
+      <p>VIDAVA does not use cookies, analytics trackers, or third-party tracking scripts. The extension only activates on checkout pages to provide card recommendations.</p>
+    </div>
+
+    <hr class="page-divider"/>
+
+    <div class="page-section">
+      <h3>Changes to This Policy</h3>
+      <p>We may update this policy from time to time. Any changes will be posted on this page with a revised date. Continued use of VIDAVA after changes constitutes acceptance of the updated policy.</p>
+    </div>
+
+    <hr class="page-divider"/>
+
+    <div class="page-section">
+      <h3>Contact</h3>
+      <p>Questions about your privacy? Reach us at <a href="mailto:hello@vidava.ai">hello@vidava.ai</a>.</p>
+    </div>
+  </div>
+</div>
+
+<!-- TERMS OF USE -->
+<div class="page-overlay" id="page-terms">
+  <button class="page-back" onclick="closePage()">Back</button>
+  <div class="page-inner">
+    <h2 class="page-title">Terms of Use</h2>
+    <div class="page-updated">Last updated: March 12, 2026</div>
+
+    <div class="page-section">
+      <h3>Acceptance of Terms</h3>
+      <p>By installing or using the VIDAVA browser extension, you agree to these Terms of Use. If you do not agree, please uninstall the extension and discontinue use.</p>
+    </div>
+
+    <hr class="page-divider"/>
+
+    <div class="page-section">
+      <h3>What VIDAVA Does</h3>
+      <p>VIDAVA is a browser extension for Chrome and Firefox that uses AI to recommend which of your credit cards to use at checkout. It analyzes the store, purchase category, and order total against your card details to suggest the card that earns the most rewards or costs the least in interest.</p>
+    </div>
+
+    <hr class="page-divider"/>
+
+    <div class="page-section">
+      <h3>Not Financial Advice</h3>
+      <p>VIDAVA provides informational suggestions only. Recommendations are generated by AI and are not financial, legal, or professional advice. You are solely responsible for your own financial decisions, including which card you use for any purchase. VIDAVA does not guarantee the accuracy of reward calculations, APR estimates, or any other financial information displayed.</p>
+    </div>
+
+    <hr class="page-divider"/>
+
+    <div class="page-section">
+      <h3>Personal Use</h3>
+      <p>VIDAVA is intended for personal, non-commercial use. You may not:</p>
+      <ul>
+        <li>Redistribute, resell, or sublicense the extension</li>
+        <li>Reverse engineer, decompile, or modify the extension</li>
+        <li>Use the extension to collect data for purposes other than your own card recommendations</li>
+        <li>Create automated systems that interact with the extension</li>
+      </ul>
+    </div>
+
+    <hr class="page-divider"/>
+
+    <div class="page-section">
+      <h3>Account Responsibility</h3>
+      <p>You are responsible for maintaining the security of your account credentials. VIDAVA is not liable for unauthorized access resulting from compromised passwords. You agree to provide accurate card information — inaccurate data may lead to incorrect recommendations.</p>
+    </div>
+
+    <hr class="page-divider"/>
+
+    <div class="page-section">
+      <h3>Limitation of Liability</h3>
+      <p>VIDAVA is provided "as is" without warranties of any kind, express or implied. To the maximum extent permitted by law, VIDAVA and its creators shall not be liable for any direct, indirect, incidental, or consequential damages arising from your use of the extension, including but not limited to financial losses from card selection decisions.</p>
+    </div>
+
+    <hr class="page-divider"/>
+
+    <div class="page-section">
+      <h3>Availability</h3>
+      <p>We strive to keep VIDAVA available and functional, but we do not guarantee uninterrupted service. The extension depends on third-party services (browser APIs, AI providers, cloud infrastructure) that may experience downtime.</p>
+    </div>
+
+    <hr class="page-divider"/>
+
+    <div class="page-section">
+      <h3>Termination</h3>
+      <p>You may stop using VIDAVA at any time by uninstalling the extension. We reserve the right to suspend or terminate accounts that violate these terms.</p>
+    </div>
+
+    <hr class="page-divider"/>
+
+    <div class="page-section">
+      <h3>Changes to Terms</h3>
+      <p>We may update these terms from time to time. Changes will be posted on this page. Continued use after changes constitutes acceptance.</p>
+    </div>
+
+    <hr class="page-divider"/>
+
+    <div class="page-section">
+      <h3>Contact</h3>
+      <p>Questions about these terms? Reach us at <a href="mailto:hello@vidava.ai">hello@vidava.ai</a>.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT US -->
+<div class="page-overlay" id="page-contact">
+  <button class="page-back" onclick="closePage()">Back</button>
+  <div class="page-inner">
+    <h2 class="page-title">Contact Us</h2>
+    <div class="page-updated">We'd love to hear from you.</div>
+
+    <div class="contact-card">
+      <div class="contact-email"><a href="mailto:hello@vidava.ai">hello@vidava.ai</a></div>
+      <div class="contact-sub">We typically respond within 24 hours.</div>
+    </div>
+
+    <div class="page-section">
+      <h3>Send Us a Message</h3>
+      <form id="contact-form" onsubmit="submitContact(event)">
+        <div class="form-group">
+          <label class="form-label" for="contact-name">Name</label>
+          <input class="form-input" id="contact-name" type="text" placeholder="Your name" required/>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="contact-email">Email</label>
+          <input class="form-input" id="contact-email" type="email" placeholder="you@example.com" required/>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="contact-subject">Subject</label>
+          <select class="form-input" id="contact-subject">
+            <option>General Question</option>
+            <option>Bug Report</option>
+            <option>Feature Request</option>
+            <option>Account / Data Deletion</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="contact-message">Message</label>
+          <textarea class="form-textarea" id="contact-message" placeholder="How can we help?" required></textarea>
+        </div>
+        <button class="form-btn" type="submit">Send Message</button>
+        <div class="form-success" id="form-success">Message sent! We'll get back to you soon.</div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+function showPage(id) {
+  document.getElementById('page-' + id).classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closePage() {
+  document.querySelectorAll('.page-overlay').forEach(function(el) { el.classList.remove('active'); });
+  document.body.style.overflow = '';
+}
+function submitContact(e) {
+  e.preventDefault();
+  var name = document.getElementById('contact-name').value;
+  var email = document.getElementById('contact-email').value;
+  var subject = document.getElementById('contact-subject').value;
+  var message = document.getElementById('contact-message').value;
+  var mailto = 'mailto:hello@vidava.ai?subject=' + encodeURIComponent(subject + ' — ' + name) + '&body=' + encodeURIComponent(message + '\n\nFrom: ' + name + ' (' + email + ')');
+  window.location.href = mailto;
+  document.getElementById('form-success').style.display = 'block';
+  document.getElementById('contact-form').reset();
+}
+</script>
+
 </body>
-</html>
 </html>
