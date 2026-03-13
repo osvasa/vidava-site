@@ -157,12 +157,14 @@
   .cta-btn { background: #FFD932; color: #222; font-size: 16px; font-weight: 700; padding: 14px 40px; border-radius: 8px; border: none; cursor: pointer; text-decoration: none; display: inline-block; transition: background 0.2s, transform 0.2s; }
   .cta-btn:hover { background: #e6c320; transform: translateY(-2px); }
 
-  footer { border-top: 1px solid rgba(255,255,255,0.08); padding: 28px 40px; display: flex; align-items: center; justify-content: space-between; }
+  footer { border-top: 1px solid rgba(255,255,255,0.08); padding: 28px 40px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; }
   .f-brand { font-family: 'Arial Rounded MT Bold', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; font-weight: 700; margin-bottom: 3px; }
   .f-sub { font-size: 12px; color: rgba(255,255,255,0.4); }
   .f-links { display: flex; gap: 28px; }
   .f-links a { font-size: 13px; color: rgba(255,255,255,0.55); text-decoration: none; }
   .f-links a:hover { color: #fff; }
+  .f-copyright { width: 100%; text-align: center; font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 18px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.08); }
+  .f-brand-inline { font-family: 'Arial Rounded MT Bold', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 700; }
 
   /* LEGAL / CONTACT PAGES */
   .page-overlay {
@@ -508,6 +510,7 @@
     <a href="#" onclick="showPage('terms');return false;">Terms of Use</a>
     <a href="#" onclick="showPage('contact');return false;">Contact Us</a>
   </div>
+  <div class="f-copyright">&copy; 2026 <span class="f-brand-inline">VIDAVA AI</span>. All rights reserved.</div>
 </footer>
 
 <!-- PRIVACY POLICY -->
