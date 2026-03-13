@@ -940,7 +940,7 @@ function openLogin() {
   document.getElementById('login-form').reset();
   document.getElementById('login-password').type = 'password';
   var eyeBtn = document.getElementById('login-pw-eye');
-  if (eyeBtn) { eyeBtn.querySelector('.eye-open').style.display = ''; eyeBtn.querySelector('.eye-closed').style.display = 'none'; }
+  if (eyeBtn) { eyeBtn.querySelector('.eye-open').style.display = 'block'; eyeBtn.querySelector('.eye-closed').style.display = 'none'; }
 }
 function closeLogin() {
   document.getElementById('login-overlay').classList.remove('active');
@@ -971,8 +971,8 @@ document.addEventListener('DOMContentLoaded', function() {
       var inp = document.getElementById('login-password');
       var isHidden = inp.type === 'password';
       inp.type = isHidden ? 'text' : 'password';
-      eyeBtn.querySelector('.eye-open').style.display = isHidden ? 'none' : '';
-      eyeBtn.querySelector('.eye-closed').style.display = isHidden ? '' : 'none';
+      eyeBtn.querySelector('.eye-open').style.display = isHidden ? 'none' : 'block';
+      eyeBtn.querySelector('.eye-closed').style.display = isHidden ? 'block' : 'none';
     });
   }
 });
