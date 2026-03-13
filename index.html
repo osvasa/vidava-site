@@ -364,6 +364,39 @@
     .f-copyright { font-size: 9px; color: rgba(255,255,255,0.2); }
   }
 
+  /* DASHBOARD */
+  .dash-nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; margin-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .dash-nav-logo { font-family: 'Arial Rounded MT Bold', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 700; color: #fff; letter-spacing: 0.05em; text-decoration: none; }
+  .dash-nav-right { display: flex; align-items: center; gap: 16px; }
+  .dash-nav-email { font-size: 12px; color: rgba(255,255,255,0.4); }
+  .dash-logout { background: none; border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.6); font-size: 12px; padding: 6px 16px; border-radius: 6px; cursor: pointer; }
+  .dash-logout:hover { border-color: rgba(255,255,255,0.3); color: #fff; }
+  .dash-title { font-size: 28px; font-weight: 900; margin-bottom: 24px; }
+  .dash-filters { display: flex; gap: 8px; margin-bottom: 24px; }
+  .dash-filter-btn { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); font-size: 12px; font-weight: 600; padding: 7px 16px; border-radius: 6px; cursor: pointer; font-family: inherit; transition: all 0.2s; }
+  .dash-filter-btn:hover { border-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.7); }
+  .dash-filter-btn.active { background: rgba(0,229,204,0.1); border-color: rgba(0,229,204,0.4); color: #00e5cc; }
+  .dash-summary { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 28px; }
+  .dash-stat { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 16px 12px; text-align: center; }
+  .dash-stat-value { font-size: 22px; font-weight: 800; color: #00e5cc; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .dash-stat-label { font-size: 11px; color: rgba(255,255,255,0.4); }
+  .dash-stat-value.dash-reward { color: #FFD932; }
+  .dash-chart-wrap { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 20px; margin-bottom: 28px; }
+  .dash-chart-title { font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.5); margin-bottom: 12px; }
+  .dash-table { width: 100%; border-collapse: separate; border-spacing: 0; }
+  .dash-table th { text-align: left; font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.08em; padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .dash-table td { font-size: 13px; color: rgba(255,255,255,0.75); padding: 14px; border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: top; }
+  .dash-table tbody tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+  .dash-table tbody tr:hover td { background: rgba(0,229,204,0.04); }
+  .dash-card-name { color: #00e5cc; font-weight: 600; font-size: 13px; }
+  .dash-card-bank { font-size: 11px; color: rgba(255,255,255,0.35); font-weight: 400; margin-top: 2px; }
+  .dash-amount { font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace; font-size: 13px; }
+  .dash-reward { color: #FFD932; font-weight: 600; }
+  .dash-date { font-size: 11px; color: rgba(255,255,255,0.35); white-space: nowrap; }
+  .dash-count-badge { display: inline-block; background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.5); font-size: 10px; font-weight: 600; padding: 2px 6px; border-radius: 4px; margin-left: 6px; }
+  .dash-empty { text-align: center; padding: 60px 20px; color: rgba(255,255,255,0.4); font-size: 14px; }
+  .dash-store-name { font-weight: 600; }
+
   /* LOGIN MODAL */
   .login-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 300; align-items: center; justify-content: center; }
   .login-overlay.active { display: flex; }
@@ -377,31 +410,16 @@
   .login-cancel { background: none; border: none; color: rgba(255,255,255,0.5); font-size: 13px; cursor: pointer; }
   .login-cancel:hover { color: #fff; }
 
-  /* DASHBOARD */
-  .dash-summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 36px; }
-  .dash-stat { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 20px; text-align: center; }
-  .dash-stat-value { font-size: 28px; font-weight: 800; color: #00e5cc; margin-bottom: 4px; }
-  .dash-stat-label { font-size: 12px; color: rgba(255,255,255,0.5); }
-  .dash-table { width: 100%; border-collapse: collapse; }
-  .dash-table th { text-align: left; font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.05em; padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-  .dash-table td { font-size: 14px; color: rgba(255,255,255,0.8); padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.05); }
-  .dash-table tr:hover td { background: rgba(255,255,255,0.03); }
-  .dash-card-name { color: #00e5cc; font-weight: 600; }
-  .dash-amount { font-family: 'SF Mono', 'Fira Code', monospace; }
-  .dash-reward { color: #FFD932; font-weight: 600; }
-  .dash-date { font-size: 12px; color: rgba(255,255,255,0.4); }
-  .dash-empty { text-align: center; padding: 60px 20px; color: rgba(255,255,255,0.4); font-size: 15px; }
-  .dash-logout { background: none; border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.6); font-size: 13px; padding: 8px 20px; border-radius: 8px; cursor: pointer; margin-top: 8px; }
-  .dash-logout:hover { border-color: rgba(255,255,255,0.3); color: #fff; }
-  .dash-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; }
-  .dash-email { font-size: 13px; color: rgba(255,255,255,0.4); }
-
   @media (max-width: 680px) {
-    .dash-summary { grid-template-columns: 1fr; }
+    .dash-summary { grid-template-columns: repeat(2, 1fr); }
+    .dash-summary .dash-stat:last-child { grid-column: span 2; }
     .dash-table th:nth-child(4), .dash-table td:nth-child(4) { display: none; }
+    .dash-filters { flex-wrap: wrap; }
+    .dash-nav-email { display: none; }
   }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
 </head>
 <body>
 
@@ -797,12 +815,20 @@
 <div class="page-overlay" id="page-dashboard">
   <button class="page-back" onclick="closePage()">Back</button>
   <div class="page-inner">
-    <div class="dash-header">
-      <div>
-        <h2 class="page-title" style="margin-bottom:4px;">My Recommendations</h2>
-        <div class="dash-email" id="dash-email"></div>
+    <div class="dash-nav">
+      <span class="dash-nav-logo">VIDAVA</span>
+      <div class="dash-nav-right">
+        <span class="dash-nav-email" id="dash-email"></span>
+        <button class="dash-logout" onclick="handleLogout()">Log out</button>
       </div>
-      <button class="dash-logout" onclick="handleLogout()">Log out</button>
+    </div>
+
+    <h2 class="dash-title">My Recommendations</h2>
+
+    <div class="dash-filters">
+      <button class="dash-filter-btn active" data-period="month" onclick="setDashFilter('month',this)">This Month</button>
+      <button class="dash-filter-btn" data-period="3months" onclick="setDashFilter('3months',this)">Last 3 Months</button>
+      <button class="dash-filter-btn" data-period="all" onclick="setDashFilter('all',this)">All Time</button>
     </div>
 
     <div class="dash-summary">
@@ -818,6 +844,19 @@
         <div class="dash-stat-value dash-reward" id="dash-total-rewards">$0.00</div>
         <div class="dash-stat-label">Est. Rewards Earned</div>
       </div>
+      <div class="dash-stat">
+        <div class="dash-stat-value" id="dash-top-card" style="font-size:14px;">—</div>
+        <div class="dash-stat-label">Most Used Card</div>
+      </div>
+      <div class="dash-stat">
+        <div class="dash-stat-value" id="dash-top-store" style="font-size:14px;">—</div>
+        <div class="dash-stat-label">Top Store</div>
+      </div>
+    </div>
+
+    <div class="dash-chart-wrap">
+      <div class="dash-chart-title">Monthly Rewards Earned</div>
+      <canvas id="dash-chart" height="180"></canvas>
     </div>
 
     <div id="dash-content"></div>
@@ -897,12 +936,36 @@ function updateNavAuth() {
 }
 
 // ── Dashboard ──────────────────────────────────────────────────────────
+var allRecs = [];
+var dashFilter = 'month';
+var rewardsChart = null;
+
 function openDashboard() {
   showPage('dashboard');
   document.getElementById('dash-email').textContent = currentUser ? currentUser.email : '';
-  loadRecommendations();
+  fetchRecommendations();
 }
-function loadRecommendations() {
+
+function setDashFilter(period, btn) {
+  dashFilter = period;
+  document.querySelectorAll('.dash-filter-btn').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  renderDashboard(filterRecs(allRecs));
+}
+
+function filterRecs(recs) {
+  if (dashFilter === 'all') return recs;
+  var now = new Date();
+  var cutoff;
+  if (dashFilter === 'month') {
+    cutoff = new Date(now.getFullYear(), now.getMonth(), 1);
+  } else {
+    cutoff = new Date(now.getFullYear(), now.getMonth() - 2, 1);
+  }
+  return recs.filter(function(r) { return new Date(r.created_at) >= cutoff; });
+}
+
+function fetchRecommendations() {
   var content = document.getElementById('dash-content');
   content.innerHTML = '<div class="dash-empty">Loading...</div>';
 
@@ -914,43 +977,168 @@ function loadRecommendations() {
         content.innerHTML = '<div class="dash-empty">Could not load recommendations.</div>';
         return;
       }
-      var recs = res.data || [];
-
-      // Update summary stats
-      document.getElementById('dash-total-recs').textContent = recs.length;
-      var totalSpent = 0;
-      var totalRewards = 0;
-      recs.forEach(function(r) {
-        if (r.purchase_amount) totalSpent += parseFloat(r.purchase_amount);
-        if (r.estimated_rewards) totalRewards += parseFloat(r.estimated_rewards);
-      });
-      document.getElementById('dash-total-spent').textContent = '$' + totalSpent.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 });
-      document.getElementById('dash-total-rewards').textContent = '$' + totalRewards.toFixed(2);
-
-      if (recs.length === 0) {
-        content.innerHTML = '<div class="dash-empty">No recommendations yet. Use VIDAVA at checkout to see your history here.</div>';
-        return;
-      }
-
-      var html = '<table class="dash-table"><thead><tr>' +
-        '<th>Store</th><th>Amount</th><th>Card Used</th><th>Est. Reward</th><th>Date</th>' +
-        '</tr></thead><tbody>';
-      recs.forEach(function(r) {
-        var amt = r.purchase_amount ? '$' + parseFloat(r.purchase_amount).toFixed(2) : '—';
-        var reward = r.estimated_rewards ? '$' + parseFloat(r.estimated_rewards).toFixed(2) : '—';
-        var d = new Date(r.created_at);
-        var date = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear();
-        html += '<tr>' +
-          '<td>' + escH(r.store_name) + '</td>' +
-          '<td class="dash-amount">' + amt + '</td>' +
-          '<td class="dash-card-name">' + escH(r.recommended_card_name) + '<br><span style="font-size:11px;color:rgba(255,255,255,0.4);font-weight:400;">' + escH(r.recommended_card_bank) + '</span></td>' +
-          '<td class="dash-reward">' + reward + '</td>' +
-          '<td class="dash-date">' + date + '</td>' +
-          '</tr>';
-      });
-      html += '</tbody></table>';
-      content.innerHTML = html;
+      allRecs = res.data || [];
+      renderDashboard(filterRecs(allRecs));
     });
+}
+
+function renderDashboard(recs) {
+  var content = document.getElementById('dash-content');
+
+  // Summary stats
+  document.getElementById('dash-total-recs').textContent = recs.length;
+  var totalSpent = 0, totalRewards = 0;
+  var cardCounts = {}, storeCounts = {};
+  recs.forEach(function(r) {
+    if (r.purchase_amount) totalSpent += parseFloat(r.purchase_amount);
+    if (r.estimated_rewards) totalRewards += parseFloat(r.estimated_rewards);
+    var cn = r.recommended_card_name || 'Unknown';
+    cardCounts[cn] = (cardCounts[cn] || 0) + 1;
+    var sn = r.store_name || 'Unknown';
+    storeCounts[sn] = (storeCounts[sn] || 0) + 1;
+  });
+  document.getElementById('dash-total-spent').textContent = '$' + totalSpent.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+  document.getElementById('dash-total-rewards').textContent = '$' + totalRewards.toFixed(2);
+
+  // Most used card
+  var topCard = '—', topCardCount = 0;
+  for (var c in cardCounts) { if (cardCounts[c] > topCardCount) { topCard = c; topCardCount = cardCounts[c]; } }
+  document.getElementById('dash-top-card').textContent = topCard;
+
+  // Top store
+  var topStore = '—', topStoreCount = 0;
+  for (var s in storeCounts) { if (storeCounts[s] > topStoreCount) { topStore = s; topStoreCount = storeCounts[s]; } }
+  document.getElementById('dash-top-store').textContent = topStore;
+
+  // Rewards chart
+  renderRewardsChart(recs);
+
+  if (recs.length === 0) {
+    content.innerHTML = '<div class="dash-empty">No recommendations yet. Use VIDAVA at checkout to see your history here.</div>';
+    return;
+  }
+
+  // Group duplicate same-store, same-amount entries from the same day
+  var grouped = [];
+  var groupMap = {};
+  recs.forEach(function(r) {
+    var d = new Date(r.created_at);
+    var dayKey = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
+    var key = (r.store_name || '') + '|' + (r.purchase_amount || '') + '|' + (r.recommended_card_name || '') + '|' + dayKey;
+    if (groupMap[key]) {
+      groupMap[key].count++;
+      if (r.estimated_rewards) groupMap[key].totalReward += parseFloat(r.estimated_rewards);
+    } else {
+      groupMap[key] = {
+        store_name: r.store_name,
+        purchase_amount: r.purchase_amount,
+        recommended_card_name: r.recommended_card_name,
+        recommended_card_bank: r.recommended_card_bank,
+        estimated_rewards: r.estimated_rewards ? parseFloat(r.estimated_rewards) : 0,
+        totalReward: r.estimated_rewards ? parseFloat(r.estimated_rewards) : 0,
+        created_at: r.created_at,
+        count: 1
+      };
+      grouped.push(groupMap[key]);
+    }
+  });
+
+  var html = '<table class="dash-table"><thead><tr>' +
+    '<th>Store</th><th>Amount</th><th>Card</th><th>Reward</th><th>Date</th>' +
+    '</tr></thead><tbody>';
+  grouped.forEach(function(r) {
+    var amt = r.purchase_amount ? '$' + parseFloat(r.purchase_amount).toFixed(2) : '—';
+    var reward = r.totalReward > 0 ? '$' + r.totalReward.toFixed(2) : '—';
+    var d = new Date(r.created_at);
+    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var date = months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+    var badge = r.count > 1 ? '<span class="dash-count-badge">' + r.count + 'x</span>' : '';
+    html += '<tr>' +
+      '<td><span class="dash-store-name">' + escH(r.store_name) + '</span>' + badge + '</td>' +
+      '<td class="dash-amount">' + amt + '</td>' +
+      '<td><span class="dash-card-name">' + escH(r.recommended_card_name) + '</span><div class="dash-card-bank">' + escH(r.recommended_card_bank) + '</div></td>' +
+      '<td class="dash-reward">' + reward + '</td>' +
+      '<td class="dash-date">' + date + '</td>' +
+      '</tr>';
+  });
+  html += '</tbody></table>';
+  content.innerHTML = html;
+}
+
+function renderRewardsChart(recs) {
+  var monthMap = {};
+  recs.forEach(function(r) {
+    if (!r.estimated_rewards) return;
+    var d = new Date(r.created_at);
+    var key = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0');
+    monthMap[key] = (monthMap[key] || 0) + parseFloat(r.estimated_rewards);
+  });
+
+  var sortedKeys = Object.keys(monthMap).sort();
+  // Show last 6 months max
+  if (sortedKeys.length > 6) sortedKeys = sortedKeys.slice(-6);
+
+  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var labels = sortedKeys.map(function(k) { var p = k.split('-'); return months[parseInt(p[1]) - 1] + ' ' + p[0].slice(2); });
+  var values = sortedKeys.map(function(k) { return parseFloat(monthMap[k].toFixed(2)); });
+
+  var ctx = document.getElementById('dash-chart');
+  if (rewardsChart) rewardsChart.destroy();
+
+  if (sortedKeys.length === 0) {
+    ctx.style.display = 'none';
+    return;
+  }
+  ctx.style.display = '';
+
+  rewardsChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [{
+        data: values,
+        backgroundColor: 'rgba(0,229,204,0.5)',
+        borderColor: '#00e5cc',
+        borderWidth: 1,
+        borderRadius: 4,
+        maxBarThickness: 48
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#111',
+          titleColor: '#fff',
+          bodyColor: '#FFD932',
+          borderColor: 'rgba(255,255,255,0.1)',
+          borderWidth: 1,
+          callbacks: {
+            label: function(ctx) { return '$' + ctx.parsed.y.toFixed(2); }
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid: { display: false },
+          ticks: { color: 'rgba(255,255,255,0.4)', font: { size: 11 } },
+          border: { color: 'rgba(255,255,255,0.08)' }
+        },
+        y: {
+          grid: { color: 'rgba(255,255,255,0.04)' },
+          ticks: {
+            color: 'rgba(255,255,255,0.3)',
+            font: { size: 11 },
+            callback: function(v) { return '$' + v; }
+          },
+          border: { display: false },
+          beginAtZero: true
+        }
+      }
+    }
+  });
 }
 function escH(s) {
   var d = document.createElement('div');
