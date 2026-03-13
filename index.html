@@ -363,7 +363,45 @@
     .nav-btn { font-size: 12px; padding: 6px 14px; }
     .f-copyright { font-size: 9px; color: rgba(255,255,255,0.2); }
   }
+
+  /* LOGIN MODAL */
+  .login-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 300; align-items: center; justify-content: center; }
+  .login-overlay.active { display: flex; }
+  .login-box { background: #111; border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 36px 32px; max-width: 380px; width: 90%; }
+  .login-box h3 { font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 6px; }
+  .login-box .login-sub { font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 24px; }
+  .login-box .form-group { margin-bottom: 14px; }
+  .login-box .form-input { width: 100%; }
+  .login-error { font-size: 13px; color: #ff6eb4; margin-bottom: 12px; display: none; }
+  .login-actions { display: flex; gap: 12px; align-items: center; margin-top: 18px; }
+  .login-cancel { background: none; border: none; color: rgba(255,255,255,0.5); font-size: 13px; cursor: pointer; }
+  .login-cancel:hover { color: #fff; }
+
+  /* DASHBOARD */
+  .dash-summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 36px; }
+  .dash-stat { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 20px; text-align: center; }
+  .dash-stat-value { font-size: 28px; font-weight: 800; color: #00e5cc; margin-bottom: 4px; }
+  .dash-stat-label { font-size: 12px; color: rgba(255,255,255,0.5); }
+  .dash-table { width: 100%; border-collapse: collapse; }
+  .dash-table th { text-align: left; font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.05em; padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .dash-table td { font-size: 14px; color: rgba(255,255,255,0.8); padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .dash-table tr:hover td { background: rgba(255,255,255,0.03); }
+  .dash-card-name { color: #00e5cc; font-weight: 600; }
+  .dash-amount { font-family: 'SF Mono', 'Fira Code', monospace; }
+  .dash-reward { color: #FFD932; font-weight: 600; }
+  .dash-date { font-size: 12px; color: rgba(255,255,255,0.4); }
+  .dash-empty { text-align: center; padding: 60px 20px; color: rgba(255,255,255,0.4); font-size: 15px; }
+  .dash-logout { background: none; border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.6); font-size: 13px; padding: 8px 20px; border-radius: 8px; cursor: pointer; margin-top: 8px; }
+  .dash-logout:hover { border-color: rgba(255,255,255,0.3); color: #fff; }
+  .dash-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; }
+  .dash-email { font-size: 13px; color: rgba(255,255,255,0.4); }
+
+  @media (max-width: 680px) {
+    .dash-summary { grid-template-columns: 1fr; }
+    .dash-table th:nth-child(4), .dash-table td:nth-child(4) { display: none; }
+  }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 </head>
 <body>
 
@@ -373,7 +411,7 @@
     <span class="logo-text">VIDAVA</span>
   </a>
   <div class="nav-right">
-    <button class="nav-login">Log in</button>
+    <button class="nav-login" onclick="openLogin()">Log in</button>
     <a href="#install" class="nav-btn">Free Install</a>
   </div>
 </nav>
@@ -732,7 +770,66 @@
   </div>
 </div>
 
+<!-- LOGIN MODAL -->
+<div class="login-overlay" id="login-overlay">
+  <div class="login-box">
+    <h3>Log in to VIDAVA</h3>
+    <div class="login-sub">View your recommendation history and rewards.</div>
+    <div class="login-error" id="login-error"></div>
+    <form id="login-form" onsubmit="handleLogin(event)">
+      <div class="form-group">
+        <label class="form-label" for="login-email">Email</label>
+        <input class="form-input" id="login-email" type="email" placeholder="you@example.com" required/>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="login-password">Password</label>
+        <input class="form-input" id="login-password" type="password" placeholder="Your password" required/>
+      </div>
+      <div class="login-actions">
+        <button class="form-btn" type="submit">Log in</button>
+        <button class="login-cancel" type="button" onclick="closeLogin()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div class="page-overlay" id="page-dashboard">
+  <button class="page-back" onclick="closePage()">Back</button>
+  <div class="page-inner">
+    <div class="dash-header">
+      <div>
+        <h2 class="page-title" style="margin-bottom:4px;">My Recommendations</h2>
+        <div class="dash-email" id="dash-email"></div>
+      </div>
+      <button class="dash-logout" onclick="handleLogout()">Log out</button>
+    </div>
+
+    <div class="dash-summary">
+      <div class="dash-stat">
+        <div class="dash-stat-value" id="dash-total-recs">0</div>
+        <div class="dash-stat-label">Recommendations</div>
+      </div>
+      <div class="dash-stat">
+        <div class="dash-stat-value" id="dash-total-spent">$0</div>
+        <div class="dash-stat-label">Total Analyzed</div>
+      </div>
+      <div class="dash-stat">
+        <div class="dash-stat-value dash-reward" id="dash-total-rewards">$0.00</div>
+        <div class="dash-stat-label">Est. Rewards Earned</div>
+      </div>
+    </div>
+
+    <div id="dash-content"></div>
+  </div>
+</div>
+
 <script>
+var SUPA_URL = 'https://payjfhkpnsmyawugymfl.supabase.co';
+var SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBheWpmaGtwbnNteWF3dWd5bWZsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMzMzg0NjQsImV4cCI6MjA4ODkxNDQ2NH0.75cRLaGn-GbYTjq0m7fp0lFOekpdE1tJcgYjVkGFBbI';
+var supa = window.supabase.createClient(SUPA_URL, SUPA_KEY);
+var currentUser = null;
+
 function showPage(id) {
   document.getElementById('page-' + id).classList.add('active');
   document.body.style.overflow = 'hidden';
@@ -752,6 +849,124 @@ function submitContact(e) {
   document.getElementById('form-success').style.display = 'block';
   document.getElementById('contact-form').reset();
 }
+
+// ── Login ──────────────────────────────────────────────────────────────
+function openLogin() {
+  document.getElementById('login-overlay').classList.add('active');
+  document.getElementById('login-error').style.display = 'none';
+  document.getElementById('login-form').reset();
+}
+function closeLogin() {
+  document.getElementById('login-overlay').classList.remove('active');
+}
+function handleLogin(e) {
+  e.preventDefault();
+  var email = document.getElementById('login-email').value;
+  var pw = document.getElementById('login-password').value;
+  var errEl = document.getElementById('login-error');
+  errEl.style.display = 'none';
+
+  supa.auth.signInWithPassword({ email: email, password: pw }).then(function(res) {
+    if (res.error) {
+      errEl.textContent = res.error.message;
+      errEl.style.display = 'block';
+    } else {
+      currentUser = res.data.user;
+      closeLogin();
+      updateNavAuth();
+      openDashboard();
+    }
+  });
+}
+function handleLogout() {
+  supa.auth.signOut().then(function() {
+    currentUser = null;
+    updateNavAuth();
+    closePage();
+  });
+}
+function updateNavAuth() {
+  var btn = document.querySelector('.nav-login');
+  if (currentUser) {
+    btn.textContent = 'Dashboard';
+    btn.onclick = function() { openDashboard(); };
+  } else {
+    btn.textContent = 'Log in';
+    btn.onclick = function() { openLogin(); };
+  }
+}
+
+// ── Dashboard ──────────────────────────────────────────────────────────
+function openDashboard() {
+  showPage('dashboard');
+  document.getElementById('dash-email').textContent = currentUser ? currentUser.email : '';
+  loadRecommendations();
+}
+function loadRecommendations() {
+  var content = document.getElementById('dash-content');
+  content.innerHTML = '<div class="dash-empty">Loading...</div>';
+
+  supa.from('recommendations')
+    .select('*')
+    .order('created_at', { ascending: false })
+    .then(function(res) {
+      if (res.error) {
+        content.innerHTML = '<div class="dash-empty">Could not load recommendations.</div>';
+        return;
+      }
+      var recs = res.data || [];
+
+      // Update summary stats
+      document.getElementById('dash-total-recs').textContent = recs.length;
+      var totalSpent = 0;
+      var totalRewards = 0;
+      recs.forEach(function(r) {
+        if (r.purchase_amount) totalSpent += parseFloat(r.purchase_amount);
+        if (r.estimated_rewards) totalRewards += parseFloat(r.estimated_rewards);
+      });
+      document.getElementById('dash-total-spent').textContent = '$' + totalSpent.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+      document.getElementById('dash-total-rewards').textContent = '$' + totalRewards.toFixed(2);
+
+      if (recs.length === 0) {
+        content.innerHTML = '<div class="dash-empty">No recommendations yet. Use VIDAVA at checkout to see your history here.</div>';
+        return;
+      }
+
+      var html = '<table class="dash-table"><thead><tr>' +
+        '<th>Store</th><th>Amount</th><th>Card Used</th><th>Est. Reward</th><th>Date</th>' +
+        '</tr></thead><tbody>';
+      recs.forEach(function(r) {
+        var amt = r.purchase_amount ? '$' + parseFloat(r.purchase_amount).toFixed(2) : '—';
+        var reward = r.estimated_rewards ? '$' + parseFloat(r.estimated_rewards).toFixed(2) : '—';
+        var d = new Date(r.created_at);
+        var date = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear();
+        html += '<tr>' +
+          '<td>' + escH(r.store_name) + '</td>' +
+          '<td class="dash-amount">' + amt + '</td>' +
+          '<td class="dash-card-name">' + escH(r.recommended_card_name) + '<br><span style="font-size:11px;color:rgba(255,255,255,0.4);font-weight:400;">' + escH(r.recommended_card_bank) + '</span></td>' +
+          '<td class="dash-reward">' + reward + '</td>' +
+          '<td class="dash-date">' + date + '</td>' +
+          '</tr>';
+      });
+      html += '</tbody></table>';
+      content.innerHTML = html;
+    });
+}
+function escH(s) {
+  var d = document.createElement('div');
+  d.textContent = s || '';
+  return d.innerHTML;
+}
+
+// ── Init: check session on load ────────────────────────────────────────
+supa.auth.getSession().then(function(res) {
+  if (res.data.session) {
+    currentUser = res.data.session.user;
+    updateNavAuth();
+  } else {
+    updateNavAuth();
+  }
+});
 </script>
 
 </body>
