@@ -426,9 +426,10 @@
   .login-cancel { background: none; border: none; color: rgba(255,255,255,0.5); font-size: 13px; cursor: pointer; }
   .login-cancel:hover { color: #fff; }
   .pw-wrap { position: relative; }
-  .pw-wrap .form-input { padding-right: 40px; }
-  .pw-eye { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; color: rgba(255,255,255,0.35); cursor: pointer; font-size: 16px; padding: 4px; line-height: 1; }
-  .pw-eye:hover { color: rgba(255,255,255,0.7); }
+  .pw-wrap .form-input { padding-right: 44px; }
+  .pw-eye { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; padding: 2px; color: rgba(255,255,255,0.3); transition: color 0.2s; display: flex; align-items: center; justify-content: center; }
+  .pw-eye:hover { color: rgba(255,255,255,0.6); }
+  .pw-eye .eye-closed { display: none; }
   .login-forgot { display: block; text-align: right; margin-top: 6px; font-size: 12px; color: rgba(255,255,255,0.4); background: none; border: none; cursor: pointer; font-family: inherit; padding: 0; }
   .login-forgot:hover { color: #00e5cc; }
 
@@ -826,16 +827,19 @@
         <label class="form-label" for="login-email">Email</label>
         <input class="form-input" id="login-email" type="email" placeholder="you@example.com" required/>
       </div>
-      <div class="form-group">
+      <div class="form-group" id="login-pw-group">
         <label class="form-label" for="login-password">Password</label>
         <div class="pw-wrap">
           <input class="form-input" id="login-password" type="password" placeholder="Your password" required/>
-          <button type="button" class="pw-eye" onclick="var i=document.getElementById('login-password');i.type=i.type==='password'?'text':'password';this.textContent=i.type==='password'?'👁':'👁‍🗨';">👁</button>
+          <button type="button" class="pw-eye" id="login-pw-eye" aria-label="Show password">
+            <svg class="eye-open" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>
+            <svg class="eye-closed" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+          </button>
         </div>
-        <button type="button" class="login-forgot" onclick="handleForgotPassword()">Forgot password?</button>
+        <button type="button" class="login-forgot" onclick="enterForgotMode()">Forgot password?</button>
       </div>
       <div class="login-actions">
-        <button class="form-btn" type="submit">Log in</button>
+        <button class="form-btn" type="submit" id="login-submit-btn">Log in</button>
         <button class="login-cancel" type="button" onclick="closeLogin()">Cancel</button>
       </div>
     </form>
@@ -929,40 +933,71 @@ function submitContact(e) {
 
 // ── Login ──────────────────────────────────────────────────────────────
 function openLogin() {
+  if (loginForgotMode) exitForgotMode();
   document.getElementById('login-overlay').classList.add('active');
   document.getElementById('login-error').style.display = 'none';
+  document.getElementById('login-error').style.color = '';
   document.getElementById('login-form').reset();
+  document.getElementById('login-password').type = 'password';
+  var eyeBtn = document.getElementById('login-pw-eye');
+  if (eyeBtn) { eyeBtn.querySelector('.eye-open').style.display = ''; eyeBtn.querySelector('.eye-closed').style.display = 'none'; }
 }
 function closeLogin() {
   document.getElementById('login-overlay').classList.remove('active');
 }
-function handleForgotPassword() {
-  var email = document.getElementById('login-email').value;
-  var errEl = document.getElementById('login-error');
-  if (!email) {
-    errEl.textContent = 'Enter your email address first, then click Forgot password.';
-    errEl.style.display = 'block';
-    return;
-  }
-  errEl.style.display = 'none';
-  supa.auth.resetPasswordForEmail(email, { redirectTo: 'https://vidava.ai/reset-password' }).then(function(res) {
-    if (res.error) {
-      errEl.textContent = res.error.message;
-      errEl.style.display = 'block';
-    } else {
-      errEl.style.color = '#00e5cc';
-      errEl.textContent = 'Password reset email sent! Check your inbox.';
-      errEl.style.display = 'block';
-      setTimeout(function() { errEl.style.color = ''; }, 5000);
-    }
-  });
+var loginForgotMode = false;
+function enterForgotMode() {
+  loginForgotMode = true;
+  document.getElementById('login-pw-group').style.display = 'none';
+  document.getElementById('login-password').removeAttribute('required');
+  document.getElementById('login-submit-btn').textContent = 'Send Reset Link';
+  document.querySelector('.login-box h3').textContent = 'Reset your password';
+  document.querySelector('.login-box .login-sub').textContent = 'Enter your email and we\'ll send you a reset link.';
+  document.getElementById('login-error').style.display = 'none';
 }
+function exitForgotMode() {
+  loginForgotMode = false;
+  document.getElementById('login-pw-group').style.display = '';
+  document.getElementById('login-password').setAttribute('required', '');
+  document.getElementById('login-submit-btn').textContent = 'Log in';
+  document.querySelector('.login-box h3').textContent = 'Log in to VIDAVA';
+  document.querySelector('.login-box .login-sub').textContent = 'View your recommendation history and rewards.';
+}
+// Eye toggle
+document.addEventListener('DOMContentLoaded', function() {
+  var eyeBtn = document.getElementById('login-pw-eye');
+  if (eyeBtn) {
+    eyeBtn.addEventListener('click', function() {
+      var inp = document.getElementById('login-password');
+      var isHidden = inp.type === 'password';
+      inp.type = isHidden ? 'text' : 'password';
+      eyeBtn.querySelector('.eye-open').style.display = isHidden ? 'none' : '';
+      eyeBtn.querySelector('.eye-closed').style.display = isHidden ? '' : 'none';
+    });
+  }
+});
 function handleLogin(e) {
   e.preventDefault();
   var email = document.getElementById('login-email').value;
-  var pw = document.getElementById('login-password').value;
   var errEl = document.getElementById('login-error');
   errEl.style.display = 'none';
+  errEl.style.color = '';
+
+  if (loginForgotMode) {
+    supa.auth.resetPasswordForEmail(email, { redirectTo: 'https://vidava.ai/reset-password' }).then(function(res) {
+      if (res.error) {
+        errEl.textContent = res.error.message;
+        errEl.style.display = 'block';
+      } else {
+        errEl.style.color = '#00e5cc';
+        errEl.textContent = 'Password reset email sent! Check your inbox.';
+        errEl.style.display = 'block';
+      }
+    });
+    return;
+  }
+
+  var pw = document.getElementById('login-password').value;
 
   supa.auth.signInWithPassword({ email: email, password: pw }).then(function(res) {
     if (res.error) {
