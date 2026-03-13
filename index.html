@@ -408,7 +408,7 @@
   .dash-card-item-date { font-size: 11px; color: rgba(255,255,255,0.3); }
   .dash-card-item-mid { display: flex; justify-content: space-between; align-items: baseline; }
   .dash-card-item-amount { font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace; font-size: 18px; font-weight: 700; color: rgba(255,255,255,0.85); }
-  .dash-card-item-cardname { font-size: 12px; color: #00e5cc; font-weight: 600; text-align: right; max-width: 55%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .dash-card-item-cardname { font-size: 12px; color: #00e5cc; font-weight: 600; text-align: right; max-width: 55%; }
   .dash-card-item-reward { font-size: 12px; color: #FFD932; font-weight: 600; margin-top: 6px; }
 
   /* LOGIN MODAL */
@@ -951,12 +951,15 @@ function handleLogout() {
 }
 function updateNavAuth() {
   var btn = document.querySelector('.nav-login');
+  var installBtn = document.querySelector('.nav-btn');
   if (currentUser) {
     btn.textContent = 'My Dashboard';
     btn.onclick = function() { openDashboard(); };
+    if (installBtn) installBtn.style.display = 'none';
   } else {
     btn.textContent = 'Log in';
     btn.onclick = function() { openLogin(); };
+    if (installBtn) installBtn.style.display = '';
   }
 }
 
@@ -1083,7 +1086,7 @@ function renderDashboard(recs) {
     var date = months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
     var badge = r.count > 1 ? '<span class="dash-count-badge">' + r.count + 'x</span>' : '';
     var cardName = r.recommended_card_name || '';
-    var shortCard = cardName.length > 20 ? cardName.substring(0, 20) + '...' : cardName;
+    var shortCard = cardName;
 
     // Desktop row
     html += '<tr>' +
