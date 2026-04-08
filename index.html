@@ -655,7 +655,7 @@
       <p>You have full control over your data:</p>
       <ul>
         <li>You can view, edit, or delete any card from the extension at any time</li>
-        <li>You can delete your account entirely by contacting us at <a href="mailto:hello@vidava.ai">hello@vidava.ai</a> — we will remove all associated data from our systems</li>
+        <li>You can delete your account entirely by contacting us at <a href="mailto:hello@vidava.app">hello@vidava.app</a> — we will remove all associated data from our systems</li>
         <li>You can uninstall the extension at any time, which stops all data collection immediately</li>
       </ul>
     </div>
@@ -678,7 +678,7 @@
 
     <div class="page-section">
       <h3>Contact</h3>
-      <p>Questions about your privacy? Reach us at <a href="mailto:hello@vidava.ai">hello@vidava.ai</a>.</p>
+      <p>Questions about your privacy? Reach us at <a href="mailto:hello@vidava.app">hello@vidava.app</a>.</p>
     </div>
   </div>
 </div>
@@ -767,7 +767,7 @@
 
     <div class="page-section">
       <h3>Contact</h3>
-      <p>Questions about these terms? Reach us at <a href="mailto:hello@vidava.ai">hello@vidava.ai</a>.</p>
+      <p>Questions about these terms? Reach us at <a href="mailto:hello@vidava.app">hello@vidava.app</a>.</p>
     </div>
   </div>
 </div>
@@ -780,7 +780,7 @@
     <div class="page-updated">We'd love to hear from you.</div>
 
     <div class="contact-card">
-      <div class="contact-email"><a href="mailto:hello@vidava.ai">hello@vidava.ai</a></div>
+      <div class="contact-email"><a href="mailto:hello@vidava.app">hello@vidava.app</a></div>
       <div class="contact-sub">We typically respond within 24 hours.</div>
     </div>
 
@@ -925,7 +925,7 @@ function submitContact(e) {
   var email = document.getElementById('contact-email').value;
   var subject = document.getElementById('contact-subject').value;
   var message = document.getElementById('contact-message').value;
-  var mailto = 'mailto:hello@vidava.ai?subject=' + encodeURIComponent(subject + ' — ' + name) + '&body=' + encodeURIComponent(message + '\n\nFrom: ' + name + ' (' + email + ')');
+  var mailto = 'mailto:hello@vidava.app?subject=' + encodeURIComponent(subject + ' — ' + name) + '&body=' + encodeURIComponent(message + '\n\nFrom: ' + name + ' (' + email + ')');
   window.location.href = mailto;
   document.getElementById('form-success').style.display = 'block';
   document.getElementById('contact-form').reset();
@@ -984,7 +984,7 @@ function handleLogin(e) {
   errEl.style.color = '';
 
   if (loginForgotMode) {
-    supa.auth.resetPasswordForEmail(email, { redirectTo: 'https://vidava.ai/reset-password' }).then(function(res) {
+    supa.auth.resetPasswordForEmail(email, { redirectTo: 'https://vidava.app/reset-password' }).then(function(res) {
       if (res.error) {
         errEl.textContent = res.error.message;
         errEl.style.display = 'block';
