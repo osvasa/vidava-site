@@ -458,7 +458,7 @@
   </a>
   <div class="nav-right">
     <button class="nav-login" onclick="openLogin()">Log in</button>
-    <a href="#install" class="nav-btn">Free Install</a>
+    <a href="#install" class="nav-btn" id="nav-install-btn">Free Install</a>
   </div>
 </nav>
 
@@ -582,7 +582,7 @@
 
 <section class="cta" id="install">
   <h2>Ready to let AI enhance your spending?</h2>
-  <a href="#" class="cta-btn">Free Install</a>
+  <span id="cta-install-container"><a href="#" class="cta-btn" id="cta-install-btn">Free Install</a></span>
 </section>
 
 <footer>
@@ -1288,6 +1288,38 @@ supa.auth.getSession().then(function(res) {
     updateNavAuth();
   }
 });
+
+/* ── Browser-aware install buttons ── */
+(function() {
+  var ua = navigator.userAgent;
+  var chromeURL = 'https://chromewebstore.google.com/detail/vidava/kppmfkiklcbbjegkbmfnohoidobhgimj';
+  var firefoxURL = 'https://addons.mozilla.org/en-US/firefox/addon/vidava-ai/';
+  var isFirefox = ua.indexOf('Firefox') > -1;
+  var isChrome = !isFirefox && ua.indexOf('Chrome') > -1;
+
+  var navBtn = document.getElementById('nav-install-btn');
+  var ctaBtn = document.getElementById('cta-install-btn');
+  var ctaContainer = document.getElementById('cta-install-container');
+
+  if (isChrome) {
+    navBtn.href = chromeURL;
+    navBtn.target = '_blank';
+    ctaBtn.href = chromeURL;
+    ctaBtn.target = '_blank';
+  } else if (isFirefox) {
+    navBtn.href = firefoxURL;
+    navBtn.target = '_blank';
+    ctaBtn.href = firefoxURL;
+    ctaBtn.target = '_blank';
+  } else {
+    navBtn.href = chromeURL;
+    navBtn.target = '_blank';
+    navBtn.textContent = 'Install for Chrome';
+    ctaContainer.innerHTML =
+      '<a href="' + chromeURL + '" class="cta-btn" target="_blank">Install for Chrome</a> ' +
+      '<a href="' + firefoxURL + '" class="cta-btn" target="_blank" style="margin-left:12px">Install for Firefox</a>';
+  }
+})();
 </script>
 
 </body>
