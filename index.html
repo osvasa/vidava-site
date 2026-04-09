@@ -1300,31 +1300,28 @@ supa.auth.getSession().then(function(res) {
   var ctaBtn = document.getElementById('cta-install-btn');
   var ctaContainer = document.getElementById('cta-install-container');
 
-  if (isMobile) {
-    navBtn.style.display = 'none';
-    ctaContainer.innerHTML = '<p style="color:#aaa;font-size:15px;margin:0">VIDAVA is a desktop browser extension.<br>Visit <strong>vidava.app</strong> on Chrome or Firefox to install.</p>';
-  } else {
-    var isFirefox = ua.indexOf('Firefox') > -1;
-    var isChrome = !isFirefox && ua.indexOf('Chrome') > -1;
+  var isFirefox = ua.indexOf('Firefox') > -1;
+  var isChrome = !isFirefox && ua.indexOf('Chrome') > -1;
 
-    if (isChrome) {
-      navBtn.href = chromeURL;
-      navBtn.target = '_blank';
-      ctaBtn.href = chromeURL;
-      ctaBtn.target = '_blank';
-    } else if (isFirefox) {
-      navBtn.href = firefoxURL;
-      navBtn.target = '_blank';
-      ctaBtn.href = firefoxURL;
-      ctaBtn.target = '_blank';
-    } else {
-      navBtn.href = chromeURL;
-      navBtn.target = '_blank';
-      navBtn.textContent = 'Install for Chrome';
-      ctaContainer.innerHTML =
-        '<a href="' + chromeURL + '" class="cta-btn" target="_blank">Install for Chrome</a> ' +
-        '<a href="' + firefoxURL + '" class="cta-btn" target="_blank" style="margin-left:12px">Install for Firefox</a>';
-    }
+  if (isMobile) {
+    /* Original mobile behavior: plain "Free Install" buttons, no changes */
+  } else if (isChrome) {
+    navBtn.href = chromeURL;
+    navBtn.target = '_blank';
+    ctaBtn.href = chromeURL;
+    ctaBtn.target = '_blank';
+  } else if (isFirefox) {
+    navBtn.href = firefoxURL;
+    navBtn.target = '_blank';
+    ctaBtn.href = firefoxURL;
+    ctaBtn.target = '_blank';
+  } else {
+    navBtn.href = chromeURL;
+    navBtn.target = '_blank';
+    navBtn.textContent = 'Install for Chrome';
+    ctaContainer.innerHTML =
+      '<a href="' + chromeURL + '" class="cta-btn" target="_blank">Install for Chrome</a> ' +
+      '<a href="' + firefoxURL + '" class="cta-btn" target="_blank" style="margin-left:12px">Install for Firefox</a>';
   }
 })();
 </script>
