@@ -462,51 +462,6 @@
   .waitlist-error { font-size: 13px; color: #ff6eb4; margin-bottom: 10px; display: none; }
   .waitlist-success p { color: #00e5cc; font-size: 15px; }
 
-  /* NOSE sections */
-  .nose { text-align: center; padding: 48px 40px; max-width: 800px; margin: 0 auto; }
-  .nose h2 { font-size: 28px; font-weight: 800; margin-bottom: 20px; }
-  .nose-line { font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.8; margin-bottom: 4px; }
-  .nose-close { font-size: 14px; color: rgba(255,255,255,0.4); margin-top: 16px; line-height: 1.6; }
-  .nose-body { font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.8; margin-bottom: 12px; }
-  .nose-teal { font-size: 15px; color: #00e5cc; font-weight: 600; line-height: 1.6; margin-top: 16px; }
-  .evidence-lead { font-size: 16px; color: rgba(255,255,255,0.5); font-weight: 600; text-align: center; max-width: 700px; margin: 0 auto 8px; padding: 0 40px; }
-  /* Rewards section */
-  .rewards-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-  .rw-card { background: #00e5cc; border-radius: 12px; padding: 24px 18px; text-align: center; }
-  .rw-n { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 6px; }
-  .rw-t { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.9); line-height: 1.5; }
-  /* Pricing section */
-  .pricing { text-align: center; padding: 48px 40px; max-width: 800px; margin: 0 auto; }
-  .pricing h2 { font-size: 28px; font-weight: 800; margin-bottom: 24px; }
-  .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; text-align: left; }
-  .pr-col { border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 24px; }
-  .pr-col-pro { border-color: #FFD932; }
-  .pr-name { font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 4px; }
-  .pr-price { font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 14px; }
-  .pr-feat { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.7; padding-left: 16px; }
-  .pr-feat::before { content: '✓ '; color: #00e5cc; }
-  .pr-pill { display: inline-block; font-size: 10px; font-weight: 800; letter-spacing: 0.5px; background: #FFD932; color: #222; padding: 3px 10px; border-radius: 999px; margin-bottom: 8px; }
-  /* Inline waitlist */
-  .wl { text-align: center; padding: 48px 40px; max-width: 700px; margin: 0 auto; }
-  .wl h2 { font-size: 24px; font-weight: 800; margin-bottom: 16px; }
-  .wl-row { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
-  .wl-input { background: transparent; border: 1px solid rgba(255,255,255,0.3); border-radius: 999px; color: #fff; font-size: 14px; padding: 12px 20px; width: 260px; outline: none; }
-  .wl-input:focus { border-color: #00e5cc; }
-  .wl-input::placeholder { color: rgba(255,255,255,0.3); }
-  .wl-msg { font-size: 13px; margin-top: 12px; }
-  .wl-ok { color: #00e5cc; }
-  .wl-dup { color: #FFD932; }
-  .wl-err { color: #ff6eb4; }
-  /* Extension card */
-  .ext-card { text-align: center; padding: 32px 40px; max-width: 700px; margin: 0 auto; }
-  .ext-card p { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.6; }
-  @media (max-width: 680px) {
-    .nose, .pricing, .wl, .ext-card { padding-left: 20px; padding-right: 20px; }
-    .pricing-grid { grid-template-columns: 1fr; }
-    .rewards-grid { grid-template-columns: 1fr; }
-    .evidence-lead { padding-left: 20px; padding-right: 20px; }
-  }
-
   /* The AI section */
   .theai { text-align: center; padding: 0 40px 48px; max-width: 980px; margin: 0 auto; }
   .theai h2 { font-size: 28px; font-weight: 800; margin-bottom: 14px; }
@@ -640,11 +595,10 @@
   </a>
   <div class="nav-right">
     <button class="nav-login" onclick="openLogin()">Log in</button>
-    <a href="#waitlist" class="nav-btn" id="nav-install-btn">Join Waitlist</a>
+    <a href="#install" class="nav-btn" id="nav-install-btn">Free Install</a>
   </div>
 </nav>
 
-<!-- 1. HERO -->
 <section class="hero">
   <div class="orb orb-1"></div>
   <div class="orb orb-2"></div>
@@ -654,25 +608,7 @@
   <img src="vidava-logo-animated.gif" class="hero-logo" alt="VIDAVA"/>
 </section>
 
-<!-- 2. THE PROBLEM (Need) -->
-<section class="nose">
-  <div class="feat-tag">THE PROBLEM</div>
-  <h2>The wrong card is quietly costing you money</h2>
-  <p class="nose-line">Carry a balance? A 25 percent APR eats any reward.</p>
-  <p class="nose-line">Pay after the statement closes? The bureaus see your worst number.</p>
-  <p class="nose-line">Max one card when another sits empty? Your score pays for it.</p>
-  <p class="nose-close">Nobody can weigh all of it at the register. That is the problem.</p>
-</section>
-
-<!-- 3. THE OPPORTUNITY -->
-<section class="nose">
-  <div class="feat-tag">THE OPPORTUNITY</div>
-  <h2>That money is recoverable</h2>
-  <p class="nose-body">The right card on every purchase. Paid on the right date. Balances placed where interest is lowest. For most people that is hundreds a year. Carrying a balance? Thousands. You could be keeping it.</p>
-  <p class="nose-teal">Until now, doing it all by hand was impossible. Now there is a way.</p>
-</section>
-
-<!-- 4a. THE AI (Solution) -->
+<!-- THE AI -->
 <section class="theai">
   <div class="feat-tag">THE AI</div>
   <h2>Decisions no human can make at the register</h2>
@@ -684,79 +620,7 @@
   </div>
 </section>
 
-<!-- 4b. VIDAVA protects your money -->
-<section class="benefits">
-  <h2><span class="vb">VIDAVA</span> protects your money</h2>
-  <div class="steps-grid">
-    <div class="step-card">
-      <div class="step-n">INTEREST</div>
-      <div class="step-t">Routes purchases away from high interest when you carry a balance. A 2 percent reward means nothing on a card charging 25 percent.</div>
-    </div>
-    <div class="step-card">
-      <div class="step-n">DUE DATES</div>
-      <div class="step-t">Times purchases to the card that gives you the longest float before payment is due.</div>
-    </div>
-    <div class="step-card">
-      <div class="step-n">CREDIT HEALTH</div>
-      <div class="step-t">Watches utilization on every card and splits purchases to protect your credit score.</div>
-    </div>
-    <div class="step-card">
-      <div class="step-n">AVAILABLE CREDIT</div>
-      <div class="step-t">Knows your real limits so a purchase never bounces or maxes a card.</div>
-    </div>
-  </div>
-</section>
-
-<!-- 4c. And yes, the rewards too -->
-<section class="benefits">
-  <h2>And yes, the rewards too</h2>
-  <div class="steps-grid rewards-grid">
-    <div class="rw-card">
-      <div class="rw-n">Category Matching</div>
-      <div class="rw-t">Picks the card with the highest multiplier for what you are buying right now.</div>
-    </div>
-    <div class="rw-card">
-      <div class="rw-n">Bonus Caps</div>
-      <div class="rw-t">Tracks quarterly and annual caps so you switch cards when the bonus runs out.</div>
-    </div>
-    <div class="rw-card">
-      <div class="rw-n">Real Point Value</div>
-      <div class="rw-t">Compares cents per point, not raw point counts, so you earn the most actual dollars.</div>
-    </div>
-    <div class="rw-card">
-      <div class="rw-n">Welcome Bonuses</div>
-      <div class="rw-t">Funnels spend to a card still working toward its signup bonus, often the single biggest value.</div>
-    </div>
-  </div>
-</section>
-
-<!-- 4d. Free and Pro -->
-<section class="pricing">
-  <h2>Free and Pro</h2>
-  <div class="pricing-grid">
-    <div class="pr-col">
-      <div class="pr-name">Free</div>
-      <div class="pr-price">$0 forever</div>
-      <div class="pr-feat">2 cards in your wallet</div>
-      <div class="pr-feat">Best card recommendation</div>
-      <div class="pr-feat">Wallet basics</div>
-    </div>
-    <div class="pr-col pr-col-pro">
-      <div class="pr-pill">LAUNCH OFFER</div>
-      <div class="pr-name">Pro</div>
-      <div class="pr-price">$39 first year, then $59/year</div>
-      <div class="pr-feat">Unlimited cards</div>
-      <div class="pr-feat">Smart split across cards</div>
-      <div class="pr-feat">True cost calculator</div>
-      <div class="pr-feat">Debt paydown plan</div>
-      <div class="pr-feat">Due date alerts</div>
-    </div>
-  </div>
-</section>
-
-<!-- 5. EVIDENCE -->
-<p class="evidence-lead">Do not take our word for it. Watch it decide.</p>
-
+<!-- THREE ACT DEMO -->
 <section class="demo" id="demo">
   <!-- ACT 1 -->
   <div class="feat-tag">SEE IT DECIDE</div>
@@ -801,22 +665,125 @@
   </div>
 </section>
 
-<!-- 6. WAITLIST -->
-<section class="wl" id="waitlist">
-  <h2>Be first when the app launches</h2>
-  <div class="wl-row">
-    <input type="email" class="wl-input" id="wl-email" placeholder="you@email.com"/>
-    <button class="d-go" id="wl-join" style="padding:12px 28px;font-size:14px">Join</button>
+<section class="benefits">
+  <h2><span class="vb">VIDAVA</span> protects your money</h2>
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-n">INTEREST</div>
+      <div class="step-t">Routes purchases away from high interest when you carry a balance. A 2 percent reward means nothing on a card charging 25 percent.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-n">DUE DATES</div>
+      <div class="step-t">Times purchases to the card that gives you the longest float before payment is due.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-n">CREDIT HEALTH</div>
+      <div class="step-t">Watches utilization on every card and splits purchases to protect your credit score.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-n">AVAILABLE CREDIT</div>
+      <div class="step-t">Knows your real limits so a purchase never bounces or maxes a card.</div>
+    </div>
   </div>
-  <div id="wl-msg"></div>
 </section>
 
-<!-- 7. EXTENSION CARD -->
-<section class="ext-card">
-  <p>The <span class="vb">VIDAVA</span> browser extension is available now for Chrome and Firefox. The mobile app is coming soon.</p>
+<p class="tagline">At checkout, our AI scans the optimal card to maximize your rewards and minimize costs.</p>
+
+<div class="features">
+  <div class="feat">
+    <div class="feat-tag">AI-Powered Optimization</div>
+    <p class="feat-body">Our AI thoroughly analyzes all your cards to determine the best one for each transaction, maximizing rewards, minimizing interest, and unlocking the greatest benefits available. Whether it is cash back, travel points, or lower fees, we ensure you get the most value out of every purchase.</p>
+  </div>
+  <div class="feat">
+    <div class="feat-tag">Effortless Savings</div>
+    <p class="feat-body">No more guesswork. Our AI analyzes each transaction in real time, intelligently selecting the optimal card to maximize savings, minimize costs, and unlock the best rewards. Get the most out of every purchase, effortlessly.</p>
+  </div>
+  <div class="feat">
+    <div class="feat-tag">Privacy First</div>
+    <p class="feat-body">We prioritize your security above all. Using only the name of your card, our AI works seamlessly without needing card numbers, CVVs, or expiration dates. Your transactions are never processed by us, ensuring your privacy and complete peace of mind.</p>
+  </div>
+</div>
+
+<div class="cards-section">
+  <h3>What <span class="vb">VIDAVA</span> looks at for every purchase</h3>
+  <p class="section-sub">So you never have to.</p>
+  <div class="cards-grid">
+
+    <div class="cc cc-1">
+      <div class="cc-top">
+        <div class="cc-chip"></div>
+        <div class="cc-title">Rewards and Cash Back</div>
+      </div>
+      <div>
+        <div class="cc-dots">•••• •••• ••••</div>
+        <div class="cc-desc">Which card earns you the most on this specific purchase at this specific store.</div>
+      </div>
+    </div>
+
+    <div class="cc cc-2">
+      <div class="cc-top">
+        <div class="cc-chip"></div>
+        <div class="cc-title">Interest Rates</div>
+      </div>
+      <div>
+        <div class="cc-dots">•••• •••• ••••</div>
+        <div class="cc-desc">Which card costs you the least if you are carrying a balance.</div>
+      </div>
+    </div>
+
+    <div class="cc cc-3">
+      <div class="cc-top">
+        <div class="cc-chip"></div>
+        <div class="cc-title">Due Dates</div>
+      </div>
+      <div>
+        <div class="cc-dots">•••• •••• ••••</div>
+        <div class="cc-desc">Which card gives you the most time before your next payment is due.</div>
+      </div>
+    </div>
+
+    <div class="cc cc-4">
+      <div class="cc-top">
+        <div class="cc-chip"></div>
+        <div class="cc-title">Active Promotions</div>
+      </div>
+      <div>
+        <div class="cc-dots">•••• •••• ••••</div>
+        <div class="cc-desc">Which card has a current deal, bonus or offer that applies right now.</div>
+      </div>
+    </div>
+
+    <div class="cc cc-5">
+      <div class="cc-top">
+        <div class="cc-chip"></div>
+        <div class="cc-title">Card Benefits and Perks</div>
+      </div>
+      <div>
+        <div class="cc-dots">•••• •••• ••••</div>
+        <div class="cc-desc">Purchase protection, travel insurance, extended warranties and more.</div>
+      </div>
+    </div>
+
+    <div class="cc cc-6">
+      <div class="cc-top">
+        <div class="cc-chip"></div>
+        <div class="cc-title">Minimum Payments</div>
+      </div>
+      <div>
+        <div class="cc-dots">•••• •••• ••••</div>
+        <div class="cc-desc">Which card is easier on your wallet this month based on what you owe.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<section class="cta" id="install">
+  <h2>Ready to let AI enhance your spending?</h2>
+  <span id="cta-install-container"><a href="#" class="cta-btn" id="cta-install-btn">Free Install</a></span>
 </section>
 
-<!-- MOBILE WAITLIST POPUP (legacy, kept for extension installs) -->
+<!-- MOBILE WAITLIST POPUP -->
 <div class="waitlist-overlay" id="waitlist-overlay">
   <div class="waitlist-box" id="waitlist-box">
     <button class="waitlist-close" onclick="closeWaitlist()">&times;</button>
@@ -1772,24 +1739,6 @@ function submitWaitlist() {
   document.getElementById('a3-budget').addEventListener('input',renderAct3);
   document.getElementById('a3-plan').addEventListener('click',renderAct3);
 })();
-</script>
-
-<script>
-document.getElementById('wl-join').addEventListener('click', function() {
-  var email = document.getElementById('wl-email').value.trim();
-  var msg = document.getElementById('wl-msg');
-  if (!email || email.indexOf('@') < 0) { msg.innerHTML = '<span class="wl-err">Please enter a valid email.</span>'; return; }
-  supa.from('mobile_waitlist').insert([{ email: email }]).select().then(function(res) {
-    if (res.error) {
-      if (res.error.message && res.error.message.indexOf('duplicate') >= 0) {
-        msg.innerHTML = '<span class="wl-dup">You are already on the list.</span>';
-      } else { msg.innerHTML = '<span class="wl-err">' + res.error.message + '</span>'; }
-    } else {
-      msg.innerHTML = '<span class="wl-ok">You are on the list. We will email you at launch.</span>';
-      document.getElementById('wl-email').value = '';
-    }
-  });
-});
 </script>
 
 </body>
