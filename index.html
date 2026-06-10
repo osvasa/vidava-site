@@ -506,17 +506,42 @@
   .tcc-apply { background: #FFD932; color: #222; font-size: 13px; font-weight: 700; padding: 7px 18px; border-radius: 999px; text-decoration: none; transition: background 0.2s; white-space: nowrap; }
   .tcc-apply:hover { background: #e6c320; }
   .tcc-disclosure { font-size: 10px; color: rgba(255,255,255,0.3); margin-top: 12px; line-height: 1.5; }
+  .tcc-toggle { display: flex; justify-content: center; gap: 0; margin-bottom: 28px; border: 1px solid rgba(255,255,255,0.15); border-radius: 999px; overflow: hidden; max-width: 420px; margin-left: auto; margin-right: auto; }
+  .tcc-tog { flex: 1; background: transparent; border: none; color: rgba(255,255,255,0.5); font-size: 13px; font-weight: 600; padding: 10px 16px; cursor: pointer; transition: all 0.2s; font-family: inherit; }
+  .tcc-tog-active { background: rgba(0,229,204,0.15); color: #00e5cc; }
+  .demo-wallet { text-align: left; margin-bottom: 24px; }
+  .demo-wallet-label { font-size: 10px; color: rgba(255,255,255,0.3); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; text-align: center; }
+  .demo-wcard { display: flex; align-items: flex-start; gap: 10px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 12px; margin-bottom: 6px; font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.5; }
+  .demo-wcard strong { color: #fff; font-weight: 600; }
+  .demo-wchip { width: 24px; height: 16px; border-radius: 3px; flex-shrink: 0; margin-top: 2px; }
+  .demo-rank { text-align: left; border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 16px; margin-bottom: 8px; transition: border-color 0.2s; }
+  .demo-rank-winner { border-color: #00e5cc; }
+  .demo-rank-head { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .demo-rank-chip { width: 24px; height: 16px; border-radius: 3px; flex-shrink: 0; }
+  .demo-rank-name { font-size: 14px; font-weight: 700; color: #fff; flex: 1; }
+  .demo-rank-pill { font-size: 9px; font-weight: 800; letter-spacing: 0.5px; padding: 3px 10px; border-radius: 999px; }
+  .demo-rank-pill-win { background: rgba(0,229,204,0.2); color: #00e5cc; }
+  .demo-rank-pill-num { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.4); }
+  .demo-rank-reason { font-size: 12px; color: rgba(255,255,255,0.6); line-height: 1.6; padding-left: 32px; }
+  .demo-rank-reason span { color: #00e5cc; font-weight: 600; }
+  .demo-rank-reason .neg { color: #ff6eb4; }
+  .demo-gap { text-align: center; font-size: 15px; font-weight: 700; color: #fff; margin: 16px 0 28px; }
+  .demo-gap span { color: #00e5cc; }
+  .tcc-cost-heading { font-size: 16px; font-weight: 700; color: rgba(255,255,255,0.5); margin-bottom: 18px; }
   @media (max-width: 680px) {
     .tcc { padding-left: 20px; padding-right: 20px; }
     .tcc-stats { grid-template-columns: repeat(2, 1fr); }
     .tcc-inputs { flex-direction: column; }
     .tcc-amount { width: 100%; }
+    .tcc-toggle { max-width: 100%; }
   }
   @media (max-width: 380px) {
     .tcc-stats { grid-template-columns: 1fr 1fr; gap: 8px; }
     .tcc-stat { padding: 14px 8px; }
     .tcc-stat-interest { font-size: 18px; }
     .tcc-pills { flex-wrap: wrap; justify-content: center; }
+    .tcc-tog { font-size: 11px; padding: 8px 10px; }
+    .demo-rank-reason { padding-left: 0; }
   }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
@@ -556,24 +581,43 @@
   </div>
 </section>
 
-<!-- TRUE COST CALCULATOR -->
+<!-- DECISION DEMO -->
 <section class="tcc" id="tcc">
-  <div class="feat-tag">TRY THE AI</div>
-  <h2>See what a purchase really costs you</h2>
-  <p class="tcc-sub">Type an amount. <span class="vb">VIDAVA</span> shows what it costs over time on the wrong card.</p>
+  <div class="feat-tag">SEE IT DECIDE</div>
+  <h2>Watch <span class="vb">VIDAVA</span> pick the right card</h2>
+  <p class="tcc-sub">Describe a purchase. The same engine that powers <span class="vb">VIDAVA</span> ranks the wallet and shows you the money.</p>
 
   <div class="tcc-inputs">
     <input type="text" inputmode="numeric" class="tcc-amount" id="tcc-amount" placeholder="$500" value="500"/>
-    <div class="tcc-pills">
-      <button class="tcc-pill" data-apr="19.99">19.99%</button>
-      <button class="tcc-pill tcc-pill-active" data-apr="24.99">24.99%</button>
-      <button class="tcc-pill" data-apr="29.99">29.99%</button>
+    <div class="tcc-pills" id="cat-pills">
+      <button class="tcc-pill" data-cat="dining">Dining</button>
+      <button class="tcc-pill" data-cat="groceries">Groceries</button>
+      <button class="tcc-pill" data-cat="gas">Gas</button>
+      <button class="tcc-pill" data-cat="online">Online</button>
+      <button class="tcc-pill tcc-pill-active" data-cat="general">General</button>
     </div>
   </div>
+  <div class="tcc-toggle" id="bal-toggle">
+    <button class="tcc-tog tcc-tog-active" data-bal="carry">I usually carry a balance</button>
+    <button class="tcc-tog" data-bal="full">I pay in full</button>
+  </div>
 
+  <!-- Sample wallet -->
+  <div class="demo-wallet" id="demo-wallet">
+    <div class="demo-wallet-label">SAMPLE WALLET</div>
+    <div class="demo-wcard"><div class="demo-wchip" style="background:#1A365D"></div><div><strong>Travel Points Card</strong><br/><span>3x dining, 1x everything else, 24.99% APR, $4,000/$8,000 used, due in 6 days</span></div></div>
+    <div class="demo-wcard"><div class="demo-wchip" style="background:#F97316"></div><div><strong>Rotating 5 Percent Card</strong><br/><span>5% groceries this quarter (first $1,500), 27.99% APR, $400/$3,000 used, due in 21 days</span></div></div>
+    <div class="demo-wcard"><div class="demo-wchip" style="background:#0891B2"></div><div><strong>Flat 2 Percent Card</strong><br/><span>2% everything, 0% intro APR for 9 more months, $900/$5,000 used, due in 14 days</span></div></div>
+  </div>
+
+  <!-- Decision output -->
+  <div id="demo-ranking"></div>
+  <div class="demo-gap" id="demo-gap"></div>
+
+  <!-- Cost sub-block -->
+  <h3 class="tcc-cost-heading">And here is what carrying it on the wrong card costs</h3>
   <div class="tcc-stats" id="tcc-stats"></div>
   <div class="tcc-chart" id="tcc-chart"></div>
-
   <p class="tcc-assumption">Assumes the balance is carried at the APR shown with monthly compounding. Estimates for education, your card terms may vary.</p>
   <p class="tcc-flip">A 0 percent intro APR card would cost you $0 in interest over this period. <span class="vb">VIDAVA</span> routes you to the right card automatically.</p>
 
@@ -1512,54 +1556,198 @@ function submitWaitlist() {
 
 <script>
 (function() {
-  var periods = [3, 6, 9, 12];
-  var currentApr = 24.99;
+  // ── Sample wallet (ported from lib/engine.ts scoring factors) ──
+  var wallet = [
+    {
+      name: 'Travel Points Card', color: '#1A365D', apr: 24.99, promoApr: null,
+      balance: 4000, limit: 8000, dueDays: 6,
+      categories: { dining: { mult: 3, pct: false }, general: { mult: 1, pct: false } },
+      baseRate: 1, basePct: false, cpp: 1.25,
+      cap: null, capSpent: 0, capCat: null
+    },
+    {
+      name: 'Rotating 5 Percent Card', color: '#F97316', apr: 27.99, promoApr: null,
+      balance: 400, limit: 3000, dueDays: 21,
+      categories: { groceries: { mult: 5, pct: true }, general: { mult: 1, pct: true } },
+      baseRate: 1, basePct: true, cpp: 1,
+      cap: 1500, capSpent: 1100, capCat: 'groceries'
+    },
+    {
+      name: 'Flat 2 Percent Card', color: '#0891B2', apr: 21.49, promoApr: 0,
+      balance: 900, limit: 5000, dueDays: 14,
+      categories: {},
+      baseRate: 2, basePct: true, cpp: 1,
+      cap: null, capSpent: 0, capCat: null
+    }
+  ];
 
+  var currentCat = 'general';
+  var carryBalance = true;
+
+  // ── Engine factors (ported from lib/engine.ts) ──
+  // Factor: rewards dollar value
+  function rewardValue(card, amount, cat) {
+    var catData = card.categories[cat];
+    var rate, isPct;
+    if (catData) {
+      if (card.cap && card.capCat === cat) {
+        var room = Math.max(0, card.cap - card.capSpent);
+        if (room <= 0) { rate = card.baseRate; isPct = card.basePct; }
+        else {
+          var bonusAmt = Math.min(amount, room);
+          var baseAmt = amount - bonusAmt;
+          var bv = catData.pct ? bonusAmt * catData.mult / 100 : bonusAmt * catData.mult * card.cpp / 100;
+          var rv = card.basePct ? baseAmt * card.baseRate / 100 : baseAmt * card.baseRate * card.cpp / 100;
+          return Math.round((bv + rv) * 100) / 100;
+        }
+      } else { rate = catData.mult; isPct = catData.pct; }
+    } else { rate = card.baseRate; isPct = card.basePct; }
+    var v = isPct ? amount * rate / 100 : amount * rate * card.cpp / 100;
+    return Math.round(v * 100) / 100;
+  }
+
+  // Factor: interest cost over 6 months (compound, no payments)
+  function interestCost6mo(card, amount) {
+    var effectiveApr = card.promoApr !== null ? card.promoApr : card.apr;
+    var r = effectiveApr / 100 / 12;
+    return Math.round(amount * (Math.pow(1 + r, 6) - 1));
+  }
+
+  // Factor: utilization after purchase
+  function utilAfter(card, amount) {
+    return (card.balance + amount) / card.limit * 100;
+  }
+
+  // Factor: interest for cost table
   function calcInterest(amount, apr, months) {
     var r = apr / 100 / 12;
     return Math.round(amount * (Math.pow(1 + r, months) - 1));
   }
 
-  function render() {
+  // ── Score and rank ──
+  function scoreCard(card, amount, cat) {
+    var rewards = rewardValue(card, amount, cat);
+    var interest = carryBalance ? interestCost6mo(card, amount) : 0;
+    var util = utilAfter(card, amount);
+    var reasons = [];
+    var netValue = rewards - interest;
+
+    // Rewards reason
+    var catData = card.categories[cat];
+    if (catData) {
+      var label = catData.pct ? catData.mult + '%' : catData.mult + 'x';
+      var rText = 'earns $' + rewards.toFixed(2) + ' in rewards (' + label + ' ' + cat + ')';
+      if (card.cap && card.capCat === cat) {
+        var room = Math.max(0, card.cap - card.capSpent);
+        if (room < amount) rText += ', $' + room + ' left at bonus rate';
+      }
+      reasons.push({ text: rText, pos: true });
+    } else {
+      reasons.push({ text: 'earns $' + rewards.toFixed(2) + ' in rewards (' + (card.basePct ? card.baseRate + '%' : card.baseRate + 'x') + ' base)', pos: true });
+    }
+
+    // Interest reason
+    if (carryBalance) {
+      if (card.promoApr !== null && card.promoApr === 0) {
+        reasons.push({ text: 'costs $0 interest for 9 more months (0% intro APR)', pos: true });
+      } else {
+        reasons.push({ text: 'costs $' + interest + ' in interest over 6 months', pos: interest === 0 });
+      }
+    }
+
+    // Utilization reason
+    var utilPct = Math.round(util);
+    if (util > 50) {
+      reasons.push({ text: 'pushes utilization to ' + utilPct + '% (hurts credit score)', pos: false });
+      netValue -= 5;
+    } else if (util > 30) {
+      reasons.push({ text: 'utilization at ' + utilPct + '% (above ideal 30%)', pos: false });
+      netValue -= 2;
+    } else {
+      reasons.push({ text: 'keeps utilization at ' + utilPct + '%', pos: true });
+    }
+
+    // Float reason
+    reasons.push({ text: card.dueDays + ' days until payment due', pos: card.dueDays > 14 });
+
+    return { card: card, score: netValue, rewards: rewards, interest: interest, util: utilPct, reasons: reasons };
+  }
+
+  function renderAll() {
     var raw = document.getElementById('tcc-amount').value.replace(/[^0-9.]/g, '');
     var amount = parseFloat(raw) || 0;
+
+    // Score and rank
+    var scored = wallet.map(function(c) { return scoreCard(c, amount, currentCat); });
+    scored.sort(function(a, b) { return b.score - a.score; });
+
+    // Decision ranking
+    var rankEl = document.getElementById('demo-ranking');
+    rankEl.innerHTML = scored.map(function(s, i) {
+      var isWin = i === 0;
+      var h = '<div class="demo-rank' + (isWin ? ' demo-rank-winner' : '') + '">';
+      h += '<div class="demo-rank-head">';
+      h += '<div class="demo-rank-chip" style="background:' + s.card.color + '"></div>';
+      h += '<div class="demo-rank-name">' + s.card.name + '</div>';
+      h += isWin ? '<span class="demo-rank-pill demo-rank-pill-win">WINNER</span>' : '<span class="demo-rank-pill demo-rank-pill-num">#' + (i + 1) + '</span>';
+      h += '</div>';
+      s.reasons.forEach(function(r) {
+        h += '<div class="demo-rank-reason">' + (r.pos ? '<span>+</span> ' : '<span class="neg">-</span> ') + r.text + '</div>';
+      });
+      h += '</div>';
+      return h;
+    }).join('');
+
+    // Value gap
+    var gapEl = document.getElementById('demo-gap');
+    if (scored.length >= 3) {
+      var gap = Math.abs(Math.round((scored[0].score - scored[2].score) * 100) / 100);
+      gapEl.innerHTML = 'The right card beats the wrong one by <span>$' + gap.toFixed(2) + '</span> on this purchase.';
+    }
+
+    // Cost table (uses the worst APR from the wallet)
+    var worstApr = Math.max.apply(null, wallet.map(function(c) { return c.promoApr !== null ? c.promoApr : c.apr; }));
+    var periods = [3, 6, 9, 12];
     var statsEl = document.getElementById('tcc-stats');
     var chartEl = document.getElementById('tcc-chart');
     var results = periods.map(function(m) {
-      var interest = calcInterest(amount, currentApr, m);
-      return { months: m, interest: interest, total: amount + interest };
+      var interest = calcInterest(amount, worstApr, m);
+      return { months: m, interest: interest, total: Math.round(amount + interest) };
     });
-    var maxInterest = Math.max.apply(null, results.map(function(r) { return r.interest; })) || 1;
+    var maxI = Math.max.apply(null, results.map(function(r) { return r.interest; })) || 1;
 
     statsEl.innerHTML = results.map(function(r) {
-      return '<div class="tcc-stat">' +
-        '<div class="tcc-stat-label">' + r.months + ' months</div>' +
-        '<div class="tcc-stat-interest">+$' + r.interest + '</div>' +
-        '<div class="tcc-stat-total">total $' + r.total + '</div>' +
-      '</div>';
+      return '<div class="tcc-stat"><div class="tcc-stat-label">' + r.months + ' months</div><div class="tcc-stat-interest">+$' + r.interest + '</div><div class="tcc-stat-total">total $' + r.total + '</div></div>';
     }).join('');
 
     chartEl.innerHTML = results.map(function(r) {
-      var h = Math.max(4, Math.round((r.interest / maxInterest) * 100));
-      return '<div class="tcc-bar-wrap">' +
-        '<div class="tcc-bar" style="height:' + h + 'px"></div>' +
-        '<div class="tcc-bar-label">' + r.months + 'm</div>' +
-      '</div>';
+      var h = Math.max(4, Math.round(r.interest / maxI * 100));
+      return '<div class="tcc-bar-wrap"><div class="tcc-bar" style="height:' + h + 'px"></div><div class="tcc-bar-label">' + r.months + 'm</div></div>';
     }).join('');
   }
 
-  document.getElementById('tcc-amount').addEventListener('input', render);
+  // ── Event listeners ──
+  document.getElementById('tcc-amount').addEventListener('input', renderAll);
 
-  document.querySelectorAll('.tcc-pill').forEach(function(pill) {
+  document.querySelectorAll('#cat-pills .tcc-pill').forEach(function(pill) {
     pill.addEventListener('click', function() {
-      document.querySelectorAll('.tcc-pill').forEach(function(p) { p.classList.remove('tcc-pill-active'); });
+      document.querySelectorAll('#cat-pills .tcc-pill').forEach(function(p) { p.classList.remove('tcc-pill-active'); });
       pill.classList.add('tcc-pill-active');
-      currentApr = parseFloat(pill.getAttribute('data-apr'));
-      render();
+      currentCat = pill.getAttribute('data-cat');
+      renderAll();
     });
   });
 
-  render();
+  document.querySelectorAll('.tcc-tog').forEach(function(tog) {
+    tog.addEventListener('click', function() {
+      document.querySelectorAll('.tcc-tog').forEach(function(t) { t.classList.remove('tcc-tog-active'); });
+      tog.classList.add('tcc-tog-active');
+      carryBalance = tog.getAttribute('data-bal') === 'carry';
+      renderAll();
+    });
+  });
+
+  renderAll();
 })();
 </script>
 
