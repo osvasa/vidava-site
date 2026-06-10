@@ -462,6 +462,20 @@
   .waitlist-error { font-size: 13px; color: #ff6eb4; margin-bottom: 10px; display: none; }
   .waitlist-success p { color: #00e5cc; font-size: 15px; }
 
+  /* The AI section */
+  .theai { text-align: center; padding: 0 40px 48px; max-width: 980px; margin: 0 auto; }
+  .theai h2 { font-size: 28px; font-weight: 800; margin-bottom: 14px; }
+  .theai-body { font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.75; margin-bottom: 24px; max-width: 700px; margin-left: auto; margin-right: auto; }
+  .theai-pills { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+  .theai-pill { background: rgba(0,229,204,0.1); border: 1px solid rgba(0,229,204,0.25); border-radius: 999px; padding: 8px 18px; font-size: 13px; font-weight: 600; color: #00e5cc; }
+  @media (max-width: 680px) {
+    .theai { padding-left: 20px; padding-right: 20px; }
+  }
+  @media (max-width: 380px) {
+    .theai-pills { gap: 6px; }
+    .theai-pill { font-size: 11px; padding: 6px 12px; }
+  }
+
   /* True Cost Calculator */
   .tcc { text-align: center; padding: 48px 40px 0; max-width: 980px; margin: 0 auto; }
   .tcc h2 { font-size: 28px; font-weight: 800; margin-bottom: 10px; }
@@ -527,28 +541,18 @@
   <div class="orb orb-3"></div>
   <h1>AI. at Your Checkout</h1>
   <p class="hero-sub">Pay less. Earn more. Build better credit.</p>
-  <img src="vidava-logo-animated.gif" class="hero-logo" alt="<span class="vb">VIDAVA</span>"/>
+  <img src="vidava-logo-animated.gif" class="hero-logo" alt="VIDAVA"/>
 </section>
 
-<section class="benefits">
-  <h2><span class="vb">VIDAVA</span> protects your money</h2>
-  <div class="steps-grid">
-    <div class="step-card">
-      <div class="step-n">INTEREST</div>
-      <div class="step-t">Routes purchases away from high interest when you carry a balance. A 2 percent reward means nothing on a card charging 25 percent.</div>
-    </div>
-    <div class="step-card">
-      <div class="step-n">DUE DATES</div>
-      <div class="step-t">Times purchases to the card that gives you the longest float before payment is due.</div>
-    </div>
-    <div class="step-card">
-      <div class="step-n">CREDIT HEALTH</div>
-      <div class="step-t">Watches utilization on every card and splits purchases to protect your credit score.</div>
-    </div>
-    <div class="step-card">
-      <div class="step-n">AVAILABLE CREDIT</div>
-      <div class="step-t">Knows your real limits so a purchase never bounces or maxes a card.</div>
-    </div>
+<!-- THE AI -->
+<section class="theai">
+  <div class="feat-tag">THE AI</div>
+  <h2>Decisions no human can make at the register</h2>
+  <p class="theai-body">At the moment you pay, the best card depends on interest rates, due dates, credit utilization, available credit, promotions, bonus progress, category caps, and rewards value, all at once. <span class="vb">VIDAVA</span>'s AI weighs every factor in under a second. You just pay.</p>
+  <div class="theai-pills">
+    <span class="theai-pill">Computes 14 factors per purchase</span>
+    <span class="theai-pill">Answers in under a second</span>
+    <span class="theai-pill">Gets smarter with your wallet</span>
   </div>
 </section>
 
@@ -579,6 +583,28 @@
     <div class="tcc-card-row"><span>A flat 2 percent cash back card</span><a href="https://vidava.app/go/flat-two-percent" target="_blank" class="tcc-apply">Apply</a></div>
     <div class="tcc-card-row"><span>A long intro balance transfer card</span><a href="https://vidava.app/go/balance-transfer" target="_blank" class="tcc-apply">Apply</a></div>
     <p class="tcc-disclosure"><span class="vb">VIDAVA</span> may earn a commission if you apply through these links. Suggestions are educational examples, not financial advice.</p>
+  </div>
+</section>
+
+<section class="benefits">
+  <h2><span class="vb">VIDAVA</span> protects your money</h2>
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-n">INTEREST</div>
+      <div class="step-t">Routes purchases away from high interest when you carry a balance. A 2 percent reward means nothing on a card charging 25 percent.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-n">DUE DATES</div>
+      <div class="step-t">Times purchases to the card that gives you the longest float before payment is due.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-n">CREDIT HEALTH</div>
+      <div class="step-t">Watches utilization on every card and splits purchases to protect your credit score.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-n">AVAILABLE CREDIT</div>
+      <div class="step-t">Knows your real limits so a purchase never bounces or maxes a card.</div>
+    </div>
   </div>
 </section>
 
