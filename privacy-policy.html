@@ -126,22 +126,22 @@
 <a class="page-back" href="https://vidava.app">Back</a>
 <div class="page-inner">
     <h2 class="page-title">Privacy Policy</h2>
-    <div class="page-updated">Last updated: March 12, 2026</div>
+    <div class="page-updated">Last updated: November 5, 2026</div>
 
     <div class="disclosure-box">
-      <h3>What <span class="vb">VIDAVA</span> Does NOT Access</h3>
-      <p>We <strong>do not collect, store, or have access to any sensitive financial data</strong>. At no point does <span class="vb">VIDAVA</span> receive, transmit, or retain card numbers, CVV/CVC security codes, expiration dates, billing addresses, or cardholder names as they appear on your card.</p>
-      <p>We <strong>do not establish connections to your bank accounts, financial institutions, or payment processors</strong>. No transaction data, account balances, or fund-transfer capabilities ever pass through our systems.</p>
-      <p>The only card-related information we store is what you voluntarily enter: the card's common name (e.g. "Chase Sapphire Preferred"), the issuing bank, and rewards details. This limited data is used solely to generate personalized recommendations — the actual payment at checkout is handled entirely by the merchant and your bank.</p>
+      <h3>What <span class="vb">VIDAVA</span> Never Collects</h3>
+      <p>Your <strong>full card number, security code, expiration date and billing address never enter our systems</strong>. Your <strong>bank username and password never enter our systems</strong>; when you choose to connect a bank, Plaid handles the login and <span class="vb">VIDAVA</span> never sees it.</p>
+      <p><span class="vb">VIDAVA</span>, Inc. makes the <span class="vb">VIDAVA</span> app, the <span class="vb">VIDAVA</span> browser extension and the <span class="vb">VIDAVA</span> online checkout. This policy applies to all three.</p>
     </div>
 
     <div class="page-section">
       <h3>What We Collect</h3>
-      <p><span class="vb">VIDAVA</span> collects only the information needed to provide personalized card recommendations:</p>
       <ul>
-        <li>Your email address (for account authentication)</li>
-        <li>Credit card details you provide (card name, bank, rewards type, APR, payment due date, and credit limit)</li>
-        <li>Checkout page data (store name, purchase category, and order total) — analyzed locally in your browser to generate recommendations</li>
+        <li>Your email address, to sign you in with a one time code.</li>
+        <li>The cards you add: the card's name as the bank names it, the bank, the last four digits, and the rewards, fees and terms of that card product.</li>
+        <li>If you connect a bank through Plaid: the card's balance, credit limit, interest rate, payment due date and, where supported, your transactions on that card. Plaid, Inc. provides the connection; its <a href="https://plaid.com/legal/#end-user-privacy-policy">end user privacy policy</a> applies to how Plaid handles your bank login.</li>
+        <li>When you pay with a <span class="vb">VIDAVA</span> recommendation: the store, the purchase category and the amount, so we can show what you earned and keep your rewards caps accurate.</li>
+        <li>The choices you make in the app, such as the category you picked for a card.</li>
       </ul>
     </div>
 
@@ -149,59 +149,73 @@
 
     <div class="page-section">
       <h3>How We Use Your Data</h3>
-      <p>Your information is used for one purpose: to recommend the best card to use at checkout. Specifically:</p>
+      <p>For one purpose: to pick the best of your cards for each purchase and show you why. Card data and bank data are stored so they sync across your devices and so recommendations work without delay. We do not use your data for advertising or profiling.</p>
+    </div>
+
+    <hr class="page-divider"/>
+
+    <div class="page-section">
+      <h3>Who We Share It With</h3>
       <ul>
-        <li>Card details are stored securely in the cloud so they sync across your devices</li>
-        <li>Checkout page data is sent to our AI service to determine which of your cards earns the most rewards for that purchase</li>
-        <li>We do not use your data for advertising, profiling, or any purpose beyond delivering recommendations</li>
+        <li>Plaid, Inc., to connect your bank when you choose to.</li>
+        <li>Supabase, Inc., which hosts our database with encryption at rest and in transit.</li>
+        <li>Anthropic, PBC, whose Claude API we use to read checkout pages and card terms. We do not send Anthropic your name, email, balances or transactions, and Anthropic does not use the data to train models.</li>
+      </ul>
+      <p><span class="vb">VIDAVA</span> does not sell, rent or share your personal information for marketing. We never share your data in a form that identifies you.</p>
+    </div>
+
+    <hr class="page-divider"/>
+
+    <div class="page-section">
+      <h3>Security</h3>
+      <p>Only the account holder can read their rows in our database. Bank access tokens are held server side only. Every account that can reach our systems uses multi factor authentication.</p>
+    </div>
+
+    <hr class="page-divider"/>
+
+    <div class="page-section">
+      <h3>Your Rights and Controls</h3>
+      <ul>
+        <li>Remove any card at any time in the app or extension.</li>
+        <li>Disconnect a bank at any time in Settings; we delete its tokens and data.</li>
+        <li>Delete your account at any time in Settings; we delete everything we hold about you, including the Plaid connections.</li>
+        <li>Ask for a copy of your data or any question at <a href="mailto:hello@vidava.app">hello@vidava.app</a>. We answer within 30 days.</li>
       </ul>
     </div>
 
     <hr class="page-divider"/>
 
     <div class="page-section">
-      <h3>We Do Not Sell Your Data</h3>
-      <p><span class="vb">VIDAVA</span> does not sell, rent, or share your personal information with third parties for marketing purposes. Your card details and browsing activity are never monetized.</p>
-    </div>
-
-    <hr class="page-divider"/>
-
-    <div class="page-section">
-      <h3>Data Storage and Security</h3>
-      <p>Your account and card data are stored securely via Supabase, a cloud database platform with encryption at rest and in transit. AI recommendations are processed through Anthropic's Claude API — no personal data is stored by Anthropic or used for model training.</p>
-    </div>
-
-    <hr class="page-divider"/>
-
-    <div class="page-section">
-      <h3>Your Rights</h3>
-      <p>You have full control over your data:</p>
-      <ul>
-        <li>You can view, edit, or delete any card from the extension at any time</li>
-        <li>You can delete your account entirely by contacting us at <a href="mailto:hello@vidava.app">hello@vidava.app</a> — we will remove all associated data from our systems</li>
-        <li>You can uninstall the extension at any time, which stops all data collection immediately</li>
-      </ul>
+      <h3>Retention</h3>
+      <p>We keep your data while your account exists. When you delete a card, a bank connection or your account, that data is deleted from our systems. Logs that contain no personal data are kept for 30 days.</p>
     </div>
 
     <hr class="page-divider"/>
 
     <div class="page-section">
       <h3>Cookies and Tracking</h3>
-      <p><span class="vb">VIDAVA</span> does not use cookies, analytics trackers, or third-party tracking scripts. The extension only activates on checkout pages to provide card recommendations.</p>
+      <p><span class="vb">VIDAVA</span> does not use advertising cookies, analytics trackers or third party tracking scripts. The extension reads a page only when it is a checkout.</p>
+    </div>
+
+    <hr class="page-divider"/>
+
+    <div class="page-section">
+      <h3>Children</h3>
+      <p><span class="vb">VIDAVA</span> is not for anyone under 18.</p>
     </div>
 
     <hr class="page-divider"/>
 
     <div class="page-section">
       <h3>Changes to This Policy</h3>
-      <p>We may update this policy from time to time. Any changes will be posted on this page with a revised date. Continued use of <span class="vb">VIDAVA</span> after changes constitutes acceptance of the updated policy.</p>
+      <p>We post changes on this page with a new date. Material changes are also shown in the app.</p>
     </div>
 
     <hr class="page-divider"/>
 
     <div class="page-section">
       <h3>Contact</h3>
-      <p>Questions about your privacy? Reach us at <a href="mailto:hello@vidava.app">hello@vidava.app</a>.</p>
+      <p><span class="vb">VIDAVA</span>, Inc. Questions about your privacy? Reach us at <a href="mailto:hello@vidava.app">hello@vidava.app</a>.</p>
     </div>
   </div>
 
