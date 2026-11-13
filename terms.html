@@ -81,11 +81,12 @@
     border-radius: 50%;
     background: #ff6eb4;
   }
-  .page-section a {
+  .page-section a, .disclosure-box a {
     color: #00e5cc;
     text-decoration: none;
   }
-  .page-section a:hover { text-decoration: underline; }
+  .page-section a:hover, .disclosure-box a:hover { text-decoration: underline; }
+  .page-section p + p, .page-section ul + p { margin-top: 12px; }
   .page-divider {
     border: none;
     border-top: 1px solid rgba(255,255,255,0.08);
@@ -126,31 +127,42 @@
 <a class="page-back" href="https://vidava.app">Back</a>
 <div class="page-inner">
     <h2 class="page-title">Terms of Use</h2>
-    <div class="page-updated">Last updated: March 12, 2026</div>
+    <div class="page-updated">Last updated: November 12, 2026</div>
 
     <div class="page-section">
       <h3>Acceptance of Terms</h3>
-      <p>By installing or using the <span class="vb">VIDAVA</span> browser extension, you agree to these Terms of Use. If you do not agree, please uninstall the extension and discontinue use.</p>
+      <p><span class="vb">VIDAVA</span>, Inc. makes the <span class="vb">VIDAVA</span> app, the <span class="vb">VIDAVA</span> browser extension and the <span class="vb">VIDAVA</span> online checkout. By creating an account or using any of them, you agree to these Terms of Use. If you do not agree, please stop using <span class="vb">VIDAVA</span> and delete your account in Settings.</p>
+      <p>You must be at least 18 years old to use <span class="vb">VIDAVA</span>.</p>
     </div>
 
     <hr class="page-divider"/>
 
     <div class="page-section">
       <h3>What <span class="vb">VIDAVA</span> Does</h3>
-      <p><span class="vb">VIDAVA</span> is a browser extension for Chrome and Firefox that uses AI to recommend which of your credit cards to use at checkout. It analyzes the store, purchase category, and order total against your card details to suggest the card that earns the most rewards or costs the least in interest.</p>
+      <p><span class="vb">VIDAVA</span> selects which of your own cards to pay with. For each purchase it looks at the store, the purchase category and the amount, and at your cards' rewards, interest rates, fees, balances and payment due dates, and it shows you the card that earns you the most or costs you the least, and why.</p>
+      <p>Your cards live in one <span class="vb">VIDAVA</span> account. The app, the browser extension and the online checkout all use that same account.</p>
     </div>
 
     <hr class="page-divider"/>
 
     <div class="disclosure-box">
-      <h3>Scope of Service — What <span class="vb">VIDAVA</span> Does NOT Do</h3>
-      <p>The Service <strong>does not process, facilitate, or intermediate any financial transactions</strong>. <span class="vb">VIDAVA</span> has no capability to initiate charges, authorize payments, transfer funds, or access account balances on your behalf. All payment processing occurs exclusively between you, the merchant, and your financial institution.</p>
-      <p>User acknowledges and agrees that <strong><span class="vb">VIDAVA</span> is solely a recommendation tool</strong>. The Service does not handle, store, or have access to sensitive card credentials such as card numbers, CVV/CVC security codes, expiration dates, billing addresses, or cardholder names. The only card information retained is what you voluntarily provide: the card's common name, the issuing bank, and rewards details — used exclusively to power personalized recommendations.</p>
+      <h3>Scope of Service: What <span class="vb">VIDAVA</span> Does NOT Do</h3>
+      <p>The Service <strong>does not process, facilitate, or intermediate any financial transactions</strong>. <span class="vb">VIDAVA</span> has no capability to initiate charges, authorize payments, or transfer funds on your behalf. You pay with your own card, through your own wallet or the store's checkout. All payment processing occurs exclusively between you, the merchant, and your financial institution.</p>
+      <p>User acknowledges and agrees that <strong><span class="vb">VIDAVA</span> is solely a recommendation tool</strong>. The Service does not handle, store, or have access to your full card number, CVV/CVC security code, expiration date or billing address, or to your bank username and password. The card information <span class="vb">VIDAVA</span> holds is described in our <a href="/privacy-policy">Privacy Policy</a>.</p>
     </div>
 
     <div class="page-section">
+      <h3>Connecting Your Bank</h3>
+      <p>You may choose to connect a bank so <span class="vb">VIDAVA</span> can read your cards and accounts there. The connection is provided by Plaid, Inc. You sign in with your bank through Plaid; <span class="vb">VIDAVA</span> never sees your bank username or password. By connecting a bank you authorize <span class="vb">VIDAVA</span> to receive, through Plaid, the information described in our <a href="/privacy-policy">Privacy Policy</a>: balances, credit limits, interest rates, payment due dates and transactions. Plaid's <a href="https://plaid.com/legal/#end-user-privacy-policy">end user privacy policy</a> applies to how Plaid handles your bank login.</p>
+      <p>The connection is read only. <span class="vb">VIDAVA</span> cannot move money, make payments or change anything at your bank. You can disconnect a bank at any time in Settings.</p>
+    </div>
+
+    <hr class="page-divider"/>
+
+    <div class="page-section">
       <h3>Not Financial Advice</h3>
-      <p><span class="vb">VIDAVA</span> provides informational suggestions only. Recommendations are generated by AI and are not financial, legal, or professional advice. You are solely responsible for your own financial decisions, including which card you use for any purchase. <span class="vb">VIDAVA</span> does not guarantee the accuracy of reward calculations, APR estimates, or any other financial information displayed.</p>
+      <p><span class="vb">VIDAVA</span> provides informational suggestions only. Recommendations are generated by software, including AI, and are not financial, legal, or professional advice. You are solely responsible for your own financial decisions, including which card you use for any purchase.</p>
+      <p>The amounts <span class="vb">VIDAVA</span> shows, such as what you earn, what you save and what a purchase would cost in interest, are estimates based on the information your bank and your card's issuer make available and on the details you enter. Your bank and your card's issuer decide the rewards, interest and fees that actually apply. <span class="vb">VIDAVA</span> does not guarantee the accuracy of these amounts.</p>
     </div>
 
     <hr class="page-divider"/>
@@ -159,10 +171,11 @@
       <h3>Personal Use</h3>
       <p><span class="vb">VIDAVA</span> is intended for personal, non-commercial use. You may not:</p>
       <ul>
-        <li>Redistribute, resell, or sublicense the extension</li>
-        <li>Reverse engineer, decompile, or modify the extension</li>
-        <li>Use the extension to collect data for purposes other than your own card recommendations</li>
-        <li>Create automated systems that interact with the extension</li>
+        <li>Redistribute, resell, or sublicense <span class="vb">VIDAVA</span></li>
+        <li>Reverse engineer, decompile, or modify <span class="vb">VIDAVA</span></li>
+        <li>Use <span class="vb">VIDAVA</span> to collect data for purposes other than your own card recommendations</li>
+        <li>Create automated systems that interact with <span class="vb">VIDAVA</span></li>
+        <li>Connect a bank account or add a card that is not yours</li>
       </ul>
     </div>
 
@@ -170,42 +183,42 @@
 
     <div class="page-section">
       <h3>Account Responsibility</h3>
-      <p>You are responsible for maintaining the security of your account credentials. <span class="vb">VIDAVA</span> is not liable for unauthorized access resulting from compromised passwords. You agree to provide accurate card information — inaccurate data may lead to incorrect recommendations.</p>
+      <p>You sign in to <span class="vb">VIDAVA</span> with a one time code sent to your email address. You are responsible for keeping your email account and your devices secure. <span class="vb">VIDAVA</span> is not liable for unauthorized access that results from someone else having access to your email or your device. You agree to provide accurate card information; inaccurate data may lead to incorrect recommendations.</p>
     </div>
 
     <hr class="page-divider"/>
 
     <div class="page-section">
       <h3>Limitation of Liability</h3>
-      <p><span class="vb">VIDAVA</span> is provided "as is" without warranties of any kind, express or implied. To the maximum extent permitted by law, <span class="vb">VIDAVA</span> and its creators shall not be liable for any direct, indirect, incidental, or consequential damages arising from your use of the extension, including but not limited to financial losses from card selection decisions.</p>
+      <p><span class="vb">VIDAVA</span> is provided "as is" without warranties of any kind, express or implied. To the maximum extent permitted by law, <span class="vb">VIDAVA</span>, Inc. shall not be liable for any direct, indirect, incidental, or consequential damages arising from your use of <span class="vb">VIDAVA</span>, including but not limited to financial losses from card selection decisions.</p>
     </div>
 
     <hr class="page-divider"/>
 
     <div class="page-section">
       <h3>Availability</h3>
-      <p>We strive to keep <span class="vb">VIDAVA</span> available and functional, but we do not guarantee uninterrupted service. The extension depends on third-party services (browser APIs, AI providers, cloud infrastructure) that may experience downtime.</p>
+      <p>We strive to keep <span class="vb">VIDAVA</span> available and functional, but we do not guarantee uninterrupted service. <span class="vb">VIDAVA</span> depends on third-party services (your bank, Plaid, browser and phone systems, AI providers, cloud infrastructure) that may experience downtime.</p>
     </div>
 
     <hr class="page-divider"/>
 
     <div class="page-section">
       <h3>Termination</h3>
-      <p>You may stop using <span class="vb">VIDAVA</span> at any time by uninstalling the extension. We reserve the right to suspend or terminate accounts that violate these terms.</p>
+      <p>You may stop using <span class="vb">VIDAVA</span> at any time. You can delete your account in Settings; we then delete what we hold about you, as described in our <a href="/privacy-policy">Privacy Policy</a>. We reserve the right to suspend or terminate accounts that violate these terms.</p>
     </div>
 
     <hr class="page-divider"/>
 
     <div class="page-section">
       <h3>Changes to Terms</h3>
-      <p>We may update these terms from time to time. Changes will be posted on this page. Continued use after changes constitutes acceptance.</p>
+      <p>We may update these terms from time to time. Changes will be posted on this page with a new date. Continued use after changes constitutes acceptance.</p>
     </div>
 
     <hr class="page-divider"/>
 
     <div class="page-section">
       <h3>Contact</h3>
-      <p>Questions about these terms? Reach us at <a href="mailto:hello@vidava.app">hello@vidava.app</a>.</p>
+      <p><span class="vb">VIDAVA</span>, Inc. Questions about these terms? Reach us at <a href="mailto:hello@vidava.app">hello@vidava.app</a>.</p>
     </div>
   </div>
 
